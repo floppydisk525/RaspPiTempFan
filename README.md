@@ -22,11 +22,11 @@ By having a temperature sensor outside, the program running on the raspberry pi 
 The gpio pin is connected to the input of an optical coupler on the relay board. Mine drew 0.15mA from the GPIO pin and 78mA of power from the 3.3v power rail in the on state. 
 
 [How to setup?](https://www.amazon.com/ask/questions/Tx2I5KJHUHOQISZ/ref=ask_dp_dpmw_al_hza)
-My working configuration is: 
-gnd = gnd pin from pi + external 3.3vdc - 
-Signal = output pin from pi 
-VCC = external 3.3vdc + 
-Jumpers = on
+My working configuration is:  
+gnd = gnd pin from pi + external 3.3vdc -  
+Signal = output pin from pi  
+VCC = external 3.3vdc +  
+Jumpers = on  
 
 ### Temperature Sensor DS18B20
 [Aideepen 5pcs DS18B20 Waterproof Temperature Sensor Digital Thermal Stainless Steel Tube Probe 1 Meter](https://www.amazon.com/gp/product/B01LY53CED)
