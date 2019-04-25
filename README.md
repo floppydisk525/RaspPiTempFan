@@ -43,6 +43,7 @@ Black-GND
 
 ### 10 Inch Shutter Exhaust Fan
 [Iliving 10 Inch Variable Speed Shutter Exhaust Fan, Wall-Mounted](https://www.amazon.com/gp/product/B01G8I7HVC)
+
 ![alt text][fan]
 
 ### KB Electronics Variable Speed AC Motor Control
