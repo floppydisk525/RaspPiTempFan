@@ -9,15 +9,14 @@ By having a temperature sensor outside, the program running on the raspberry pi 
 
 ## PARTS
 ### 3.3Vdc Input 120/10A Output Relay Solid State Relay
-Icstation 3V 1 Channel Relay Power Switch Module with Optocoupler
-https://www.amazon.com/gp/product/B01M0E6SQM
+[Icstation 3V 1 Channel Relay Power Switch Module with Optocoupler](https://www.amazon.com/gp/product/B01M0E6SQM)
 
 ![alt text][3_3vdc]
 
-https://www.amazon.com/ask/questions/Tx1Y6ACZYHHM2PY/ref=ask_dp_dpmw_al_hza
+[How much current??](https://www.amazon.com/ask/questions/Tx1Y6ACZYHHM2PY/ref=ask_dp_dpmw_al_hza)
 The gpio pin is connected to the input of an optical coupler on the relay board. Mine drew 0.15mA from the GPIO pin and 78mA of power from the 3.3v power rail in the on state. 
 
-https://www.amazon.com/ask/questions/Tx2I5KJHUHOQISZ/ref=ask_dp_dpmw_al_hza
+[How to setup?](https://www.amazon.com/ask/questions/Tx2I5KJHUHOQISZ/ref=ask_dp_dpmw_al_hza)
 My working configuration is: 
 gnd = gnd pin from pi + external 3.3vdc - 
 Signal = output pin from pi 
@@ -25,8 +24,7 @@ VCC = external 3.3vdc +
 Jumpers = on
 
 ### Temperature Sensor DS18B20
-Aideepen 5pcs DS18B20 Waterproof Temperature Sensor Digital Thermal Stainless Steel Tube Probe 1 Meter
-https://www.amazon.com/gp/product/B01LY53CED
+[Aideepen 5pcs DS18B20 Waterproof Temperature Sensor Digital Thermal Stainless Steel Tube Probe 1 Meter](https://www.amazon.com/gp/product/B01LY53CED)
 ![alt text][DS18B20]
 
 Output lead: 
@@ -34,8 +32,8 @@ Red- VCC
 Yellow- DATA
 Black-GND
 
-### HiLetgo 5pcs DHT11 Temperature and Humidity Sensor Module
-https://www.amazon.com/gp/product/B01DKC2GQ0
+### HiLetgo DHT11 Temperature and Humidity Sensor Module
+[HiLetgo 5pcs DHT11 Temperature and Humidity Sensor Module](https://www.amazon.com/gp/product/B01DKC2GQ0)
 ![alt text][DHT11]
 
 [3_3vdc]: /Images/Icstation%203V%201%20Channel%20Relay%20Power.PNG "3.3Vdc Input 120/10A Output Relay Solid State Relay"
