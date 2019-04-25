@@ -38,7 +38,6 @@ HiLetgo 5pcs DHT11 Temperature and Humidity Sensor Module
 https://www.amazon.com/gp/product/B01DKC2GQ0
 ![alt text][DHT11]
 
-[3_3vdc]: /Images/Icstation 3V 1 Channel Relay Power.PNG "3.3Vdc Input 120/10A Output Relay Solid State Relay"
-[DS18B20]: /Images/Aideepen 5pcs DS18B20.PNG "Aideepen 5pcs DS18B20 Waterproof Temperature Sensor"
-[DHT11]: /Images/HiLetgo 5pcs DHT11 Temperature.PNG "HiLetgo 5pcs DHT11 Temperature and Humidity Sensor Module"
-
+[3_3vdc]: /Images/Icstation%203V%201%20Channel%20Relay%20Power.PNG "3.3Vdc Input 120/10A Output Relay Solid State Relay"
+[DS18B20]: /Images/Aideepen%205pcs%20DS18B20.PNG "Aideepen 5pcs DS18B20 Waterproof Temperature Sensor"
+[DHT11]: /Images/HiLetgo%205pcs%20DHT11%20Temperature.PNG "HiLetgo 5pcs DHT11 Temperature and Humidity Sensor Module"
