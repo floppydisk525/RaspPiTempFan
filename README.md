@@ -32,10 +32,10 @@ Jumpers = on
 [Aideepen 5pcs DS18B20 Waterproof Temperature Sensor Digital Thermal Stainless Steel Tube Probe 1 Meter](https://www.amazon.com/gp/product/B01LY53CED)
 ![alt text][DS18B20]
 
-Output lead: 
-Red- VCC
-Yellow- DATA
-Black-GND
+Output lead:  
+Red- VCC  
+Yellow- DATA  
+Black-GND  
 
 ### HiLetgo DHT11 Temperature and Humidity Sensor Module (Optional)
 [HiLetgo 5pcs DHT11 Temperature and Humidity Sensor Module](https://www.amazon.com/gp/product/B01DKC2GQ0)
