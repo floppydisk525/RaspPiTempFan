@@ -8,6 +8,11 @@ By having a temperature sensor outside, the program running on the raspberry pi 
 
 
 ## PARTS
+### RaspberryPi or Similar (TBD)
+[RaspberryPi](https://www.raspberrypi.org/)
+
+![alt text][RaspPi]
+
 ### 3.3Vdc Input 120/10A Output Relay Solid State Relay
 [Icstation 3V 1 Channel Relay Power Switch Module with Optocoupler](https://www.amazon.com/gp/product/B01M0E6SQM)
 
@@ -39,3 +44,4 @@ Black-GND
 [3_3vdc]: /Images/Icstation%203V%201%20Channel%20Relay%20Power.PNG "3.3Vdc Input 120/10A Output Relay Solid State Relay"
 [DS18B20]: /Images/Aideepen%205pcs%20DS18B20.PNG "Aideepen 5pcs DS18B20 Waterproof Temperature Sensor"
 [DHT11]: /Images/HiLetgo%205pcs%20DHT11%20Temperature.PNG "HiLetgo 5pcs DHT11 Temperature and Humidity Sensor Module"
+[RaspPi]: /Images/rasppi.jpg "Raspberry Pi Image"
