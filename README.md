@@ -18,6 +18,8 @@ By having a temperature sensor outside, the program running on the raspberry pi 
 
 ![alt text][3_3vdc]
 
+[DataSheet](http://www.circuitbasics.com/wp-content/uploads/2016/03/DS18B20-Datasheet.pdf)
+
 [How much current??](https://www.amazon.com/ask/questions/Tx1Y6ACZYHHM2PY/ref=ask_dp_dpmw_al_hza)
 The gpio pin is connected to the input of an optical coupler on the relay board. Mine drew 0.15mA from the GPIO pin and 78mA of power from the 3.3v power rail in the on state. 
 
@@ -56,3 +58,11 @@ Black-GND
 [RaspPi]: /Images/rasppi.jpg "Raspberry Pi Image"
 [speedctrl]: /Images/kbcontrol.png "KB Speed Control"
 [fan]: /Images/10inchfan.png "Shutter Fan 10"
+
+## RESOURCES
+### Links to Reference Projects
+https://circuitdigest.com/microcontroller-projects/raspberry-pi-ds18b20-temperature-sensor-interfacing
+http://bradsrpi.blogspot.com/2013/12/c-program-to-read-temperature-from-1.html
+https://www.raspberrypi.org/forums/viewtopic.php?t=70709
+http://www.circuitbasics.com/raspberry-pi-ds18b20-temperature-sensor-tutorial/
+
