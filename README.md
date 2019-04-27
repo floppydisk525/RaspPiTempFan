@@ -79,7 +79,7 @@ https://www.modmypi.com/blog/how-to-give-your-raspberry-pi-a-static-ip-address-u
 [EXAMPLE](http://ubuntuhandbook.org/index.php/2014/01/boot-into-text-console-ubuntu-linux-14-04/)  
 sudo cp -n /etc/dhcpcd.conf /etc/dhcpcd.conf.orig
 
-If for some reason you want to revert to original settings, just run the command below in terminal:
+If for some reason you want to revert to original settings, just run the command below in terminal:  
 sudo mv /etc/dhcpcd.conf.orig /etc/dhcpcd.conf
 
 #### Static IP Address Setup Tips/Notes
