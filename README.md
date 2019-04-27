@@ -102,9 +102,16 @@ Use Putty to ssh into the new static IP address.  I made sure to setup my wifi (
 
 
 ## RESOURCES
-### Links to Reference Projects
+### Links to Reference Sensor Projects
 https://circuitdigest.com/microcontroller-projects/raspberry-pi-ds18b20-temperature-sensor-interfacing
 http://bradsrpi.blogspot.com/2013/12/c-program-to-read-temperature-from-1.html
 https://www.raspberrypi.org/forums/viewtopic.php?t=70709
 http://www.circuitbasics.com/raspberry-pi-ds18b20-temperature-sensor-tutorial/
+
+### Links to Git Markdown to help w/ this README.md page
+https://guides.github.com/features/mastering-markdown/
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#blockquotes
+
+### Links to Git committing for us git dummies
+https://stackoverflow.com/questions/9329244/how-to-commit-and-push-all-changes-including-deletes
 
