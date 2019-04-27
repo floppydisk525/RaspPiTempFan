@@ -59,6 +59,44 @@ Black-GND
 [speedctrl]: /Images/kbcontrol.png "KB Speed Control"
 [fan]: /Images/10inchfan.png "Shutter Fan 10"
 
+## RASPBERRY PI SETUP
+### SETUP SSH
+Not covered in detail, but you might want to setup SSH and a remote terminal to talk 'headless' to the raspberry pi.  I do this so that I don't need a separate 'workstation' with a monitor, keyboard, and mouse connected directly to the raspberry pi.  This way, I can setup the raspberry pi, plug it in and connect to it remotely from my latptop where I usually do most of my computer work. 
+
+The internet has many examples - google how to setup SSH.
+If using windows, install PUTTY.  Also, WinSCP is a useful Windows install that allows you to transfer files to and from your remote raspberry pi or any linux OS computer for that matter. 
+
+Lastly, to find your RaspPi on your network, a nice tool is [Angry IP Scanner](https://angryip.org/) that allows you to scan your network (ie 192.168.0.0 to 192.168.0.255) to find any computers connected to the network.  
+
+### SETUP STATIC IP ADDRESS
+I never used to setup static IP Addresses on linux boxes, but it makes sense so that you don't have to run Angry IP Scanner to find the IP address or login in directly to the computer to find the IP Address.  The latter is problematic because because it means I need to take the RaspPi to a monitor, keyboard, and mouse and boot it.  Too much futzing around...
+
+Here are 2 resources for setting up static IP Addresses:
+http://www.circuitbasics.com/how-to-set-up-a-static-ip-on-the-raspberry-pi/
+https://www.modmypi.com/blog/how-to-give-your-raspberry-pi-a-static-ip-address-update
+
+#### PRO TIP
+GREAT FILE COPY [EXAMPLE](http://ubuntuhandbook.org/index.php/2014/01/boot-into-text-console-ubuntu-linux-14-04/))
+sudo cp -n /etc/dhcpcd.conf /etc/dhcpcd.conf.orig
+
+If for some reason you want to revert to original settings, just run the command below in terminal:
+sudo mv /etc/dhcpcd.conf.orig /etc/dhcpcd.conf
+
+#### Static IP Address Setup Tips/Notes
+The [example at circuit basics](http://www.circuitbasics.com/how-to-set-up-a-static-ip-on-the-raspberry-pi/) shows how to find your  default gateway IP with:
+route -ne
+
+And, the IP addresses of your domain name with:
+cat /etc/resolv.conf
+
+Then, modify your dhcpcd.conf  (make backup as shown above)
+sudo nano /etc/dhcpcd.conf
+
+Then, reboot:
+sudo reboot
+
+Use Putty to ssh into the new static IP address.  I made sure to setup my wifi (wlan0) ip address to a static address so I could work on my rasppi anywhere in the house where it was plugged in and could reach the wifi.  
+
 ## RESOURCES
 ### Links to Reference Projects
 https://circuitdigest.com/microcontroller-projects/raspberry-pi-ds18b20-temperature-sensor-interfacing
