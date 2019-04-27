@@ -73,10 +73,11 @@ I never used to setup static IP Addresses on linux boxes, but it makes sense so 
 
 Here are 2 resources for setting up static IP Addresses:
 http://www.circuitbasics.com/how-to-set-up-a-static-ip-on-the-raspberry-pi/
+
 https://www.modmypi.com/blog/how-to-give-your-raspberry-pi-a-static-ip-address-update
 
 #### PRO TIP
-GREAT FILE COPY [EXAMPLE](http://ubuntuhandbook.org/index.php/2014/01/boot-into-text-console-ubuntu-linux-14-04/))
+GREAT FILE COPY [EXAMPLE](http://ubuntuhandbook.org/index.php/2014/01/boot-into-text-console-ubuntu-linux-14-04/)
 sudo cp -n /etc/dhcpcd.conf /etc/dhcpcd.conf.orig
 
 If for some reason you want to revert to original settings, just run the command below in terminal:
