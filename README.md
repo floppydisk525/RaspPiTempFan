@@ -83,19 +83,23 @@ If for some reason you want to revert to original settings, just run the command
 sudo mv /etc/dhcpcd.conf.orig /etc/dhcpcd.conf
 
 #### Static IP Address Setup Tips/Notes
-The [example at circuit basics](http://www.circuitbasics.com/how-to-set-up-a-static-ip-on-the-raspberry-pi/) shows how to find your  default gateway IP with:
+The [example at circuit basics](http://www.circuitbasics.com/how-to-set-up-a-static-ip-on-the-raspberry-pi/) shows how to find your  default gateway IP with:  
 route -ne
 
-And, the IP addresses of your domain name with:
+And, the IP addresses of your domain name with:  
 cat /etc/resolv.conf
 
-Then, modify your dhcpcd.conf  (make backup as shown above)
+Then, modify your dhcpcd.conf  (make backup as shown above)  
 sudo nano /etc/dhcpcd.conf
 
-Then, reboot:
+Then, reboot:  
 sudo reboot
 
 Use Putty to ssh into the new static IP address.  I made sure to setup my wifi (wlan0) ip address to a static address so I could work on my rasppi anywhere in the house where it was plugged in and could reach the wifi.  
+
+
+
+
 
 ## RESOURCES
 ### Links to Reference Projects
