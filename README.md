@@ -111,9 +111,9 @@ In order to expedite code, I borrowed the base code from https://github.com/flop
 I renamed the code to tempio.c (from blinkio.c) and placed it in the cprog folder of this project.  Also, I updated the header text to indicate the change in the tempio.c file.  
 
 Note that GPIO is setup the following way:  
-GPIO 4 - pushbutton input
-GPIO 5 - Output LED triggered by Pushbutton
-GPIO 6 - HeartBeat
+GPIO 4 - pushbutton input  
+GPIO 5 - Output LED triggered by Pushbutton  
+GPIO 6 - HeartBeat  
 
 Let's start by customizing the new tempio.c program for temperature setup.  
 
