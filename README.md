@@ -60,6 +60,12 @@ Black-GND
 [fan]: /Images/10inchfan.png "Shutter Fan 10"
 
 ## RASPBERRY PI SETUP
+### Raspberry Pi
+Prerequisite is to have a running Raspberry Pi with Stretch or stretch-lite installed.  I used a Raspberry Pi 3 Model B v1.2.  
+
+uname -a
+Linux autopi 4.14.34-v7+ #1110 SMP Mon Apr 16 15:18:51 BST 2018 armv7l GNU/Linux
+
 ### SETUP SSH
 Not covered in detail, but you might want to setup SSH and a remote terminal to talk 'headless' to the raspberry pi.  I do this so that I don't need a separate 'workstation' with a monitor, keyboard, and mouse connected directly to the raspberry pi.  This way, I can setup the raspberry pi, plug it in and connect to it remotely from my latptop where I usually do most of my computer work. 
 
@@ -97,12 +103,23 @@ sudo reboot
 
 Use Putty to ssh into the new static IP address.  I made sure to setup my wifi (wlan0) ip address to a static address so I could work on my rasppi anywhere in the house where it was plugged in and could reach the wifi.  
 
+## TEMP TEST AND SETUP FOR DS18B20
+Started off by following this [tutorial](https://circuitdigest.com/microcontroller-projects/raspberry-pi-ds18b20-temperature-sensor-interfacing).  
 
+In order to expedite code, I borrowed the base code from https://github.com/floppydisk525/blinkio.  I already had a breadboard setup for an input, output LED, and heart beat timer.  Seems logical to use those items as a precursor for this project.  Ultimatley, I would like to have an input button to act as an override from the Raspberry Pi control and turn it on manually, if say the wife decides that's what needs to be done:-).  
 
+I renamed the code to tempio.c (from blinkio.c) and placed it in the cprog folder of this project.  Also, I updated the header text to indicate the change in the tempio.c file.  
+
+Note that GPIO is setup the following way:  
+GPIO 4 - pushbutton input
+GPIO 5 - Output LED triggered by Pushbutton
+GPIO 6 - HeartBeat
+
+Let's start by customizing the new tempio.c program for temperature setup.  
 
 
 ## RESOURCES
-### Links to Reference Sensor Projects
+### Links to Reference Sensor Projects  
 https://circuitdigest.com/microcontroller-projects/raspberry-pi-ds18b20-temperature-sensor-interfacing
 http://bradsrpi.blogspot.com/2013/12/c-program-to-read-temperature-from-1.html
 https://www.raspberrypi.org/forums/viewtopic.php?t=70709
