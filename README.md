@@ -116,8 +116,8 @@ GPIO 5 - Output LED triggered by Pushbutton
 GPIO 6 - HeartBeat  
 
 Let's start by customizing the new tempio.c program for temperature setup.  Before we do that, we need to be able to compile and run the program.  
-### Compile and Run c program tempio.can  
-Compile the c program:  
+### Compile and Run c program tempio.c  
+Compile the c program tempio.c:  
 gcc -o tempio -l rt tempio.c -l bcm2835  
 
 Run the c program:  
