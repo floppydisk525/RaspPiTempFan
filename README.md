@@ -124,7 +124,7 @@ Run the c program:
 sudo ./tempio  
 
 ### Setup of the one-wire interface
-There are a few tutorials easily found on the web to interface a Raspberry Pi to the DS18B20 temperature sensor.  But, usually they simply tell you how to connect, but may or (usually) may not tell you what you're doing behind the scenes.  A little googling found a few resources:
+There are a few tutorials easily found on the web to interface a Raspberry Pi to the DS18B20 temperature sensor.  But, usually they simply tell you how to connect, but may or (usually) may not tell you what you're doing behind the scenes.  A little googling found a few resources:  
 https://www.kernel.org/doc/Documentation/w1/w1.generic  
 https://jumpnowtek.com/rpi/Using-DS18B20-1-wire-Temp-Sensors-with-the-Raspberry-Pi.html  
 
