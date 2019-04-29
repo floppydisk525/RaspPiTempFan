@@ -104,7 +104,7 @@ sudo reboot
 Use Putty to ssh into the new static IP address.  I made sure to setup my wifi (wlan0) ip address to a static address so I could work on my rasppi anywhere in the house where it was plugged in and could reach the wifi.  
 
 ## TEMP TEST AND SETUP FOR DS18B20
-Started off by following this [tutorial](https://circuitdigest.com/microcontroller-projects/raspberry-pi-ds18b20-temperature-sensor-interfacing).  But, be careful of what you follow on the internet and constantly ask if you can believe what they're feeding you.  For example, the link I just provided shows connecting the temp sensor to the Raspberry Pi's 5vdc output.  However, 2 other tutorials I found connected the temp sensor voltage input to 3.3vdc.  Which one is it?  To know for sure, check the sensor data sheet for the allowable dc input.  In this case, both 3.3vdc and 5vdc are acceptable.  I think I'll go with 3.3vdc because I'm already using that for my starter program.  
+Started off by following this [tutorial](https://circuitdigest.com/microcontroller-projects/raspberry-pi-ds18b20-temperature-sensor-interfacing).  I checked the data sheet for the DS18B20 (References Folder) and it can accept 3.3vdc or 5vdc input.    
 
 In order to expedite code, I borrowed the base code from https://github.com/floppydisk525/blinkio.  I already had a breadboard setup for an input, output LED, and heart beat timer.  Seems logical to use those items as a precursor for this project.  Ultimatley, I would like to have an input button to act as an override from the Raspberry Pi control and turn it on manually, if say the wife decides that's what needs to be done:-).  
 
@@ -123,7 +123,12 @@ gcc -o tempio -l rt tempio.c -l bcm2835
 Run the c program:  
 sudo ./tempio  
 
+### Setup of the one-wire interface
+There are a few tutorials easily found on the web to interface a Raspberry Pi to the DS18B20 temperature sensor.  But, usually they simply tell you how to connect, but may or (usually) may not tell you what you're doing behind the scenes.  A little googling found a few resources:
+https://www.kernel.org/doc/Documentation/w1/w1.generic  
+https://jumpnowtek.com/rpi/Using-DS18B20-1-wire-Temp-Sensors-with-the-Raspberry-Pi.html  
 
+Both pages above have been cut/paste into text files and saved in the References Folder.  
 
 ## RESOURCES
 ### Links to Reference Sensor Projects  
