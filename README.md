@@ -149,7 +149,7 @@ cd /sys/bus/w1/devices
 ls  
 
 #### Get the Sensor ID
-Each sensor has a unique ID beginning with 28-00000xxxxxxx.  Check the temperature by issuing the following commands:
+Each sensor has a unique ID beginning with 28-00000xxxxxxx.  Check the temperature by issuing the following commands:  
 cd 28-00000xxxxxxx  
 ls  
 cat w1_slave  
