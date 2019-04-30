@@ -58,6 +58,7 @@ Black-GND
 [RaspPi]: /Images/rasppi.jpg "Raspberry Pi Image"
 [speedctrl]: /Images/kbcontrol.png "KB Speed Control"
 [fan]: /Images/10inchfan.png "Shutter Fan 10"
+[fritz1]: /Fritz/RaspPiTempFan_1_sensor_bb.png "DS18B20 1 sensor setup GPIO 26"
 
 ## RASPBERRY PI SETUP
 ### Raspberry Pi
@@ -115,6 +116,9 @@ GPIO 4 - pushbutton input
 GPIO 5 - Output LED triggered by Pushbutton  
 GPIO 6 - HeartBeat  
 
+### Wire sensor to the Rasperry Pi by adapting from Blinkio  
+![alt text][fritz1]
+
 Let's start by customizing the new tempio.c program for temperature setup.  Before we do that, we need to be able to compile and run the program.  
 ### Compile and Run c program tempio.c  
 Compile the c program tempio.c:  
@@ -124,11 +128,19 @@ Run the c program:
 sudo ./tempio  
 
 ### Setup of the one-wire interface
-There are a few tutorials easily found on the web to interface a Raspberry Pi to the DS18B20 temperature sensor.  But, usually they simply tell you how to connect, but may or (usually) may not tell you what you're doing behind the scenes.  A little googling found a few resources:  
+There are a few tutorials easily found on the web to interface a Raspberry Pi to the DS18B20 temperature sensor.  But, usually they simply tell you how to connect, but may or (usually) may not tell you what you're doing behind the scenes.  A little googling found a few resources, of which have been cut and paste into text files and saved in the References Folder:  
 https://www.kernel.org/doc/Documentation/w1/w1.generic  
 https://jumpnowtek.com/rpi/Using-DS18B20-1-wire-Temp-Sensors-with-the-Raspberry-Pi.html  
 
-Both pages above have been cut/paste into text files and saved in the References Folder.  
+Using this [example](https://pinout.xyz/pinout/1_wire ), here are the following steps:  
+#### Update  /boot/config.txt with the following line:  
+dtoverlay=w1-gpio,gpiopin=26  
+The gpiopin changes the dtoverlay from default gpio 4 to gpio 26.  
+
+#### Reboot  
+sudo reboot
+
+
 
 ## RESOURCES
 ### Links to Reference Sensor Projects  
