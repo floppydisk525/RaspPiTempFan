@@ -107,25 +107,8 @@ Use Putty to ssh into the new static IP address.  I made sure to setup my wifi (
 ## TEMPERATURE TEST AND SETUP FOR DS18B20
 Started off by following this [tutorial](https://circuitdigest.com/microcontroller-projects/raspberry-pi-ds18b20-temperature-sensor-interfacing).  I checked the data sheet for the DS18B20 (References Folder) and it can accept 3.3vdc or 5vdc input.    
 
-In order to expedite code, I borrowed the base code from https://github.com/floppydisk525/blinkio.  I already had a breadboard setup for an input, output LED, and heart beat timer.  Seems logical to use those items as a precursor for this project.  Ultimatley, I would like to have an input button to act as an override from the Raspberry Pi control and turn it on manually, if say the wife decides that's what needs to be done:-).  
-
-I renamed the code to tempio.c (from blinkio.c) and placed it in the cprog folder of this project.  Also, I updated the header text to indicate the change in the tempio.c file.  
-
-Note that GPIO is setup the following way:  
-GPIO 4 - pushbutton input  
-GPIO 5 - Output LED triggered by Pushbutton  
-GPIO 6 - HeartBeat  
-
 ### Wire sensor to the Rasperry Pi by adapting from Blinkio  
-![alt text][fritz1]
-
-Let's start by customizing the new tempio.c program for temperature setup.  Before we do that, we need to be able to compile and run the program.  
-### Compile and Run c program tempio.c  
-Compile the c program tempio.c:  
-gcc -o tempio -l rt tempio.c -l bcm2835  
-
-Run the c program:  
-sudo ./tempio  
+![alt text][fritz1]  
 
 ### Setup of the one-wire interface
 There are a few tutorials easily found on the web to interface a Raspberry Pi to the DS18B20 temperature sensor.  But, usually they simply tell you how to connect, but may or (usually) may not tell you what you're doing behind the scenes.  A little googling found a few resources, of which have been cut and paste into text files and saved in the References Folder:  
@@ -137,7 +120,7 @@ Using this [example](https://pinout.xyz/pinout/1_wire ), here are the following 
 Update the config.txt file by opening the file:  
 sudo nano /boot/config.txt
 
-Add the following line:  
+##### Add the following line:  
 dtoverlay=w1-gpio,gpiopin=26  
 The gpiopin changes the dtoverlay from default gpio 4 to gpio 26.  
 
@@ -154,6 +137,26 @@ cd 28-00000xxxxxxx
 ls  
 cat w1_slave  
 
+#### The Output looks like...  
+(Display output here...)
+
+## LET'S CODE
+In order to expedite code, I borrowed the base code from https://github.com/floppydisk525/blinkio.  I already had a breadboard setup for an input, output LED, and heart beat timer.  Seems logical to use those items as a precursor for this project.  Ultimatley, I would like to have an input button to act as an override from the Raspberry Pi control and turn it on manually, if say the wife decides that's what needs to be done:-).  
+
+I renamed the code to tempio.c (from blinkio.c) and placed it in the cprog folder of this project.  Also, I updated the header text to indicate the change in the tempio.c file.  
+
+Note that GPIO is setup the following way:  
+GPIO 4 - pushbutton input  
+GPIO 5 - Output LED triggered by Pushbutton  
+GPIO 6 - HeartBeat  
+
+Let's start by customizing the new tempio.c program for temperature setup.  Before we do that, we need to be able to compile and run the program.  
+### Compile and Run c program tempio.c  
+Compile the c program tempio.c:  
+gcc -o tempio -l rt tempio.c -l bcm2835  
+
+Run the c program:  
+sudo ./tempio  
 
 
 ## RESOURCES
