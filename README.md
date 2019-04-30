@@ -104,7 +104,7 @@ sudo reboot
 
 Use Putty to ssh into the new static IP address.  I made sure to setup my wifi (wlan0) ip address to a static address so I could work on my rasppi anywhere in the house where it was plugged in and could reach the wifi.  
 
-## TEMP TEST AND SETUP FOR DS18B20
+## TEMPERATURE TEST AND SETUP FOR DS18B20
 Started off by following this [tutorial](https://circuitdigest.com/microcontroller-projects/raspberry-pi-ds18b20-temperature-sensor-interfacing).  I checked the data sheet for the DS18B20 (References Folder) and it can accept 3.3vdc or 5vdc input.    
 
 In order to expedite code, I borrowed the base code from https://github.com/floppydisk525/blinkio.  I already had a breadboard setup for an input, output LED, and heart beat timer.  Seems logical to use those items as a precursor for this project.  Ultimatley, I would like to have an input button to act as an override from the Raspberry Pi control and turn it on manually, if say the wife decides that's what needs to be done:-).  
