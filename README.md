@@ -133,12 +133,26 @@ https://www.kernel.org/doc/Documentation/w1/w1.generic
 https://jumpnowtek.com/rpi/Using-DS18B20-1-wire-Temp-Sensors-with-the-Raspberry-Pi.html  
 
 Using this [example](https://pinout.xyz/pinout/1_wire ), here are the following steps:  
-#### Update  /boot/config.txt with the following line:  
+#### Update  /boot/config.txt:  
+Update the config.txt file by opening the file:  
+sudo nano /boot/config.txt
+
+Add the following line:  
 dtoverlay=w1-gpio,gpiopin=26  
 The gpiopin changes the dtoverlay from default gpio 4 to gpio 26.  
 
 #### Reboot  
-sudo reboot
+sudo reboot  
+
+#### Check for Connected Devices
+cd /sys/bus/w1/devices  
+ls  
+
+#### Get the Sensor ID
+Each sensor has a unique ID beginning with 28-00000xxxxxxx.  Check the temperature by issuing the following commands:
+cd 28-00000xxxxxxx  
+ls  
+cat w1_slave  
 
 
 
@@ -148,6 +162,8 @@ https://circuitdigest.com/microcontroller-projects/raspberry-pi-ds18b20-temperat
 http://bradsrpi.blogspot.com/2013/12/c-program-to-read-temperature-from-1.html
 https://www.raspberrypi.org/forums/viewtopic.php?t=70709
 http://www.circuitbasics.com/raspberry-pi-ds18b20-temperature-sensor-tutorial/
+https://www.raspberrypi-spy.co.uk/2013/03/raspberry-pi-1-wire-digital-thermometer-sensor/
+https://pinout.xyz/pinout/1_wire
 
 ### Links to Git Markdown to help w/ this README.md page
 https://guides.github.com/features/mastering-markdown/
