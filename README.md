@@ -116,13 +116,19 @@ https://www.kernel.org/doc/Documentation/w1/w1.generic
 https://jumpnowtek.com/rpi/Using-DS18B20-1-wire-Temp-Sensors-with-the-Raspberry-Pi.html  
 
 Using this [example](https://pinout.xyz/pinout/1_wire ), here are the following steps:  
+#### Let's backup config.txt
+sudo cp -n /boot/config.txt /boot/config.txt.orig  
+
+If for some reason you want to revert to original settings, just run the command below in terminal:  
+sudo mv /boot/config.txt.orig /boot/config.txt  
+
 #### Update  /boot/config.txt:  
 Update the config.txt file by opening the file:  
-sudo nano /boot/config.txt
+sudo nano /boot/config.txt  
 
 ##### Add the following line:  
 dtoverlay=w1-gpio,gpiopin=26  
-The gpiopin changes the dtoverlay from default gpio 4 to gpio 26.  
+The gpiopin changes the dtoverlay from default gpio 4 to gpio 26.  I'm using gpio 24 because gpio 4, gpio 5, and gpio 6 are used from blinkio.  
 
 #### Reboot  
 sudo reboot  
@@ -151,6 +157,7 @@ GPIO 5 - Output LED triggered by Pushbutton
 GPIO 6 - HeartBeat  
 
 Let's start by customizing the new tempio.c program for temperature setup.  Before we do that, we need to be able to compile and run the program.  
+
 ### Compile and Run c program tempio.c  
 Compile the c program tempio.c:  
 gcc -o tempio -l rt tempio.c -l bcm2835  
