@@ -180,5 +180,10 @@ https://guides.github.com/features/mastering-markdown/
 https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#blockquotes
 
 ### Links to Git committing for us git dummies
-https://stackoverflow.com/questions/9329244/how-to-commit-and-push-all-changes-including-deletes
+https://stackoverflow.com/questions/9329244/how-to-commit-and-push-all-changes-including-deletes  
+Good Git tutorial I stumbled across:
+https://medium.freecodecamp.org/the-essential-git-handbook-a1cf77ed11b5
+
+### PID example
+https://nicisdigital.wordpress.com/2011/06/27/proportional-integral-derivative-pid-controller/
 
