@@ -1,7 +1,19 @@
-//blinkio.c
+//tempio.c
 //
-//Example program for bcm2835 library
+//This program started with the blinkio program and 
+//adds code for a BS18B20 temp sensor.  Also, it changes
+//the pushbotton from a momentary to a latch.
+//
+//The repository for the blinkio.c program is here
+//https://github.com/floppydisk525/blinkio
+//The blinkio program (was) is for bcm2835 library
 //Blinks a pin on and off every 1 sec
+//receives pushbutton input to momentary output.  
+//
+//
+//
+//NOTE to try:  Need to compile the BS18B20 program
+//without the older c files.  
 //
 //After installing bcm2835, you can build this
 //with something like:
@@ -14,6 +26,13 @@
 #include <bcm2835.h>  //include for raspPi gpio
 #include <time.h>     //include for timing
 
+//next include for reading DS18b20
+#include <dirent.h>
+#include <string.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 // blinks on rpi plug pi pin 11 (gpio 17) FROM BCM EXAMPLE
 //#define PIN RPI_GPIO_P1_11
 // blinks on rpi plug pi  pin 7 (gpio  4)
@@ -25,6 +44,16 @@
 int hb_state_1s = 0;    //heartBeat IO
 int CheckTime = 0;      //boolean (int) to allow time check.
 struct timespec gettime_now;
+
+//define global variables for DS18b20 and file system reading
+ DIR *dir;
+ struct dirent *dirent;
+ char dev[16];      // Dev ID
+ char devPath[128]; // Path to device
+ char buf[256];     // Data from device
+ char tmpData[6];   // Temp C * 1000 reported by device 
+ char path[] = "/sys/bus/w1/devices"; 
+ ssize_t numRead;
 
 //--------------------------
 //----- HEARTBEAT TIME -----
