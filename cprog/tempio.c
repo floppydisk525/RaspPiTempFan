@@ -54,6 +54,8 @@ struct timespec gettime_now;
  char tmpData[6];   // Temp C * 1000 reported by device 
  char path[] = "/sys/bus/w1/devices"; 
  ssize_t numRead;
+ //define 'read temp variable'
+ int CheckTimeDS18 = 0;
 
 //--------------------------
 //----- HEARTBEAT TIME -----
@@ -104,7 +106,7 @@ void DelayMicrosecondsNoSleep (int delay_us)
 }
 
 //-----------------------------------------------------------
-//------------------------  DS18b20   -----------------------
+//----------------  DS18b20 TEMP SENSOR READ  ---------------
 //-----------------------------------------------------------
 
 void DS18Setup ()
@@ -129,6 +131,11 @@ void DS18Setup ()
 
     // Assemble path to OneWire device
 	sprintf(devPath, "%s/%s/w1_slave", path, dev);	
+}
+
+void DS18TimeCnt ()
+{
+	
 }
 
 void DS18Read()
@@ -183,8 +190,7 @@ int main(int argc, char **argv)
 
         HeartBeat();       //call heartbeat function
 
-		//call read temperature from here.
-
+		DS18TimeCnt (); //call read temperature
 
         // wait a bit (which is better below?
         delay(10);      //time in ms
