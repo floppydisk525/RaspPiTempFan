@@ -54,8 +54,13 @@ struct timespec gettime_now;
  char tmpData[6];   // Temp C * 1000 reported by device 
  char path[] = "/sys/bus/w1/devices"; 
  ssize_t numRead;
- //define 'read temp variable'
- int CheckTimeDS18 = 0;
+ //define timing variables to read ds18b20
+ int DS18TimerStartVal = 0 		//time that counter starts
+ int DS18TimerStartValPlusHalfSec = 0;	//time counter starts plus half second
+ int DS18GetTimeStartFlag = 0;	//Indicates counter is counting and 'have' start time
+ int DS18ReadTimeInterval = 2;  //read temp every 5 sec
+ int DS18HalfSecFlag = 0;       //half second time ctr flag
+ int DS18SecCnt	= 0;            //second counter
 
 //--------------------------
 //----- HEARTBEAT TIME -----
@@ -133,12 +138,62 @@ void DS18Setup ()
 	sprintf(devPath, "%s/%s/w1_slave", path, dev);	
 }
 
-void DS18TimeCnt ()
+void DS18ReadCheckTime ()
 {
+	/*This subroutine works by setting DS18TimerStartVal equal to gettime_now.tv_nsec as the base for counting. It then sets a flag DS18GetTimeStartFlag to say that we ahve the base value.  As well is adds a half second to the base value to look at a range of 1/2 second later.  The half second could be made a lot smaller, but keep it large because we don't want to miss a second count (probably easier ways to do this.)
+	*/
 	
+	clock_gettime(CLOCK_REALTIME, &gettime_now);   //get current time of counter
+//	printf("gettime_now: %ld\n",gettime_now.tv_nsec);
+	
+	if(DS18GetTimeStartFlag == 0)		//set variables with starttime(s), set flag have time
+	{
+		DS18GetTimeStartFlag =1;
+		DS18TimerStartVal = gettime_now.tv_nsec;
+		DS18TimerStartValPlusHalfSec = DS18TimerStartVal + 500000000;
+		if(DS18TimerStartValPlusHalfSec > 1000000000)
+			DS18TimerStartValPlusHalfSec = DS18TimerStartValPlusHalfSec - 1000000000;
+	}
+
+	if(DS18HalfSecFlag == 0)
+	{
+		if(DS18TimerStartVal <= 500000000)
+		{
+			if(gettime_now.tv_nsec > DS18TimerStartValPlusHalfSec || gettime_now.tv_nsec <= DS18TimerStartVal)
+			DS18HalfSecFlag = 1;
+		}
+		else	//timerstart time greater than 500000000
+		{
+			if(gettime_now.tv_nsec > DS18TimerStartValPlusHalfSec && gettime_now.tv_nsec < DS18TimerStartVal)
+			DS18HalfSecFlag = 1;
+		}
+	}
+	
+	if(DS18HalfSecFlag = 1)
+	{
+		if(DS18TimerStartVal <= 500000000)
+		{
+			if(gettime_now.tv_nsec <= DS18TimerStartValPlusHalfSec && gettime_now.tv_nsec > DS18TimerStartVal)
+			DS18HalfSecFlag = 0;
+			DS18SecCnt++;	//increment 1 sec counter
+		}
+		else	//timerstart time greater than 500000000
+		{
+			if(gettime_now.tv_nsec <= DS18TimerStartValPlusHalfSec || gettime_now.tv_nsec > DS18TimerStartVal)
+			DS18HalfSecFlag = 0;
+			DS18SecCnt++;   //increment 1 sec counter
+	}
+	
+	if(DS18SecCnt == DS18ReadTemp)
+	{
+		//DS18ReadTemp ();     //read value of temp HERE
+		printf("sec count: %d\n", DS18SecCnt);
+		DS18SecCnt = 0;
+		//DS18GetTimeStartFlag = 0;  //note - this can be skipped.
+	}
 }
 
-void DS18Read()
+void DS18ReadTemp()
 {
 	int fd = open(devPath, O_RDONLY);
 	if(fd == -1)
@@ -190,7 +245,7 @@ int main(int argc, char **argv)
 
         HeartBeat();       //call heartbeat function
 
-		DS18TimeCnt (); //call read temperature
+		DS18ReadCheckTime (); //call read temperature
 
         // wait a bit (which is better below?
         delay(10);      //time in ms
