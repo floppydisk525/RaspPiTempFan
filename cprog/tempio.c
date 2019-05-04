@@ -62,9 +62,9 @@ struct timespec gettime_now;
  int DS18HalfSecFlag = 0;       //half second time ctr flag
  int DS18SecCnt	= 0;            //second counter
 
-//--------------------------
-//----- HEARTBEAT TIME -----
-//--------------------------
+//-----------------------------------------------------
+//------------------ HEARTBEAT TIME -------------------
+//-----------------------------------------------------
 //The gettime_now.tv_nsec counts in nanoseconds from 0 to 1 second (1 billion cts)
 //  The way this works is that when the nano seconds get above 10000, the
 //  CheckTime variable is set to 1 and the next if statement will then check
@@ -86,9 +86,9 @@ void HeartBeat()
    }
 }
 
-//*****************************************************
-//******** DELAY FOR MicroSec WITHOUT SLEEPING ********
-//**************** SEND ANY TIME AMT  *****************
+//-----------------------------------------------------
+//-------- DELAY FOR MicroSec WITHOUT SLEEPING --------
+//---------------- SEND ANY TIME AMT  -----------------
 //Using delayMicroseconds lets the linux scheduler decide to jump to another process.  Using this function avoids letting the
 //scheduler know we are pausing and provides much faster operation if you are needing to use lots of delays.
 void DelayMicrosecondsNoSleep (int delay_us)
