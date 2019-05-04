@@ -55,7 +55,7 @@ struct timespec gettime_now;
  char path[] = "/sys/bus/w1/devices"; 
  ssize_t numRead;
  //define timing variables to read ds18b20
- int DS18TimerStartVal = 0 		//time that counter starts
+ int DS18TimerStartVal = 0; 		//time that counter starts
  int DS18TimerStartValPlusHalfSec = 0;	//time counter starts plus half second
  int DS18GetTimeStartFlag = 0;	//Indicates counter is counting and 'have' start time
  int DS18ReadTimeInterval = 2;  //read temp every 5 sec
@@ -131,7 +131,7 @@ void DS18Setup ()
 	else
 	{
 		perror ("Couldn't open the w1 devices directory");
-		return 1;
+		//return 1;   //NOTE this is from temp reading and need to chnage
 	}
 
     // Assemble path to OneWire device
@@ -169,7 +169,7 @@ void DS18ReadCheckTime ()
 		}
 	}
 	
-	if(DS18HalfSecFlag = 1)
+	if(DS18HalfSecFlag == 1)
 	{
 		if(DS18TimerStartVal <= 500000000)
 		{
@@ -182,9 +182,10 @@ void DS18ReadCheckTime ()
 			if(gettime_now.tv_nsec <= DS18TimerStartValPlusHalfSec || gettime_now.tv_nsec > DS18TimerStartVal)
 			DS18HalfSecFlag = 0;
 			DS18SecCnt++;   //increment 1 sec counter
+		}	
 	}
 	
-	if(DS18SecCnt == DS18ReadTemp)
+	if(DS18SecCnt == DS18ReadTimeInterval)
 	{
 		//DS18ReadTemp ();     //read value of temp HERE
 		printf("sec count: %d\n", DS18SecCnt);
@@ -199,7 +200,7 @@ void DS18ReadTemp()
 	if(fd == -1)
 	{
 		perror ("Couldn't open the w1 device.");
-		return 1;   
+		//return 1;     //this is from temp read prog.  need to move!
 	}
 	while((numRead = read(fd, buf, 256)) > 0) 
 	{
