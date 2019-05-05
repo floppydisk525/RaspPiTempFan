@@ -182,14 +182,14 @@ void DS18ReadCheckTime ()
 			if(gettime_now.tv_nsec <= DS18TimerStartValPlusHalfSec && gettime_now.tv_nsec > DS18TimerStartVal)
 			DS18HalfSecFlag = 0;
 			DS18SecCnt++;	//increment 1 sec counter
-			printf("TmrStrt LESS than 500, DS18SecCnt++\n");
+			printf("TmrStrt LESS than 500, DS18SecCnt++ Value:  \n", DS18SecCnt);
 		}
 		else	//timerstart time greater than 500000000
 		{
 			if(gettime_now.tv_nsec <= DS18TimerStartValPlusHalfSec || gettime_now.tv_nsec > DS18TimerStartVal)
 			DS18HalfSecFlag = 0;
 			DS18SecCnt++;   //increment 1 sec counter
-			printf("TmrStrt GREATER than 500, DS18SecCnt++\n");
+			printf("TmrStrt GREATER than 500, DS18SecCnt++ Value:  \n", DS18SecCnt);
 		}	
 	}
 	
@@ -203,6 +203,9 @@ void DS18ReadCheckTime ()
 		printf("START TIMER VALUES\n");
 		printf("DS18TimerStartVal: %d\n", DS18TimerStartVal);
 		printf("DS18TimerStartValPlusHalfSec: %d\n", DS18TimerStartValPlusHalfSec);
+		printf("----------- system time ------------\n");
+		printf("%s",__TIME__);
+		printf("\n---------- system time ------------\n");
 	}
 }
 
