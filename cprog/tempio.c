@@ -58,7 +58,7 @@ struct timespec gettime_now;
  int DS18TimerStartVal = 0; 		//time that counter starts
  int DS18TimerStartValPlusHalfSec = 0;	//time counter starts plus half second
  int DS18GetTimeStartFlag = 0;	//Indicates counter is counting and 'have' start time
- int DS18ReadTimeInterval = 2;  //read temp every 5 sec
+ int DS18ReadTimeInterval = 2;  //read temp every 2 sec
  int DS18HalfSecFlag = 0;       //half second time ctr flag
  int DS18SecCnt	= 0;            //second counter
 
@@ -153,10 +153,10 @@ void DS18ReadCheckTime ()
 		DS18TimerStartValPlusHalfSec = DS18TimerStartVal + 500000000;
 		if(DS18TimerStartValPlusHalfSec > 1000000000)
 			DS18TimerStartValPlusHalfSec = DS18TimerStartValPlusHalfSec - 1000000000;
-		printf("----------- START TIMER VALUES ------------/n");
+		printf("----------- START TIMER VALUES ------------\n");
 		printf("DS18TimerStartVal: %d\n", DS18TimerStartVal);
 		printf("DS18TimerStartValPlusHalfSec: %d\n", DS18TimerStartValPlusHalfSec);
-		printf("-------------------------------------------/n");
+		printf("-------------------------------------------\n");
 	}
 
 	if(DS18HalfSecFlag == 0)
@@ -165,11 +165,13 @@ void DS18ReadCheckTime ()
 		{
 			if(gettime_now.tv_nsec > DS18TimerStartValPlusHalfSec || gettime_now.tv_nsec <= DS18TimerStartVal)
 			DS18HalfSecFlag = 1;
+			printf("halfsecflag==0, <500.\n");
 		}
 		else	//timerstart time greater than 500000000
 		{
 			if(gettime_now.tv_nsec > DS18TimerStartValPlusHalfSec && gettime_now.tv_nsec < DS18TimerStartVal)
 			DS18HalfSecFlag = 1;
+			printf("halfsecflag==0, >500.\n");
 		}
 	}
 	
@@ -180,14 +182,14 @@ void DS18ReadCheckTime ()
 			if(gettime_now.tv_nsec <= DS18TimerStartValPlusHalfSec && gettime_now.tv_nsec > DS18TimerStartVal)
 			DS18HalfSecFlag = 0;
 			DS18SecCnt++;	//increment 1 sec counter
-			printf("TmrStr LESS than 500, DS18SecCnt++/n");
+			printf("TmrStrt LESS than 500, DS18SecCnt++\n");
 		}
 		else	//timerstart time greater than 500000000
 		{
 			if(gettime_now.tv_nsec <= DS18TimerStartValPlusHalfSec || gettime_now.tv_nsec > DS18TimerStartVal)
 			DS18HalfSecFlag = 0;
 			DS18SecCnt++;   //increment 1 sec counter
-			printf("TmrStr GREATER than 500, DS18SecCnt++/n");
+			printf("TmrStrt GREATER than 500, DS18SecCnt++\n");
 		}	
 	}
 	
@@ -196,8 +198,9 @@ void DS18ReadCheckTime ()
 		//DS18ReadTemp ();     //read value of temp HERE
 		printf("sec count: %d\n", DS18SecCnt);
 		DS18SecCnt = 0;
+		printf("sec count set to zero??  %d\n", DS18SecCnt);
 		//DS18GetTimeStartFlag = 0;  //note - this can be skipped.
-		printf("START TIMER VALUES/n");
+		printf("START TIMER VALUES\n");
 		printf("DS18TimerStartVal: %d\n", DS18TimerStartVal);
 		printf("DS18TimerStartValPlusHalfSec: %d\n", DS18TimerStartValPlusHalfSec);
 	}
