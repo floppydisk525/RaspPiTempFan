@@ -15,10 +15,10 @@
 //NOTE to try:  Need to compile the BS18B20 program
 //without the older c files.  
 //
-//After installing bcm2835, you can build this
+//After installing bcm2835, you can build and run this program
 //with something like:
-//gcc -o blinkio blink.c -l bcm2835
-//sudo ./blinkio
+//gcc -Wall -std=gnu99 tempio.c -o tempio -l bcm2835
+//sudo ./tempio
 //
 //Author: MJ copied from bcm2835 examples
 
@@ -153,6 +153,10 @@ void DS18ReadCheckTime ()
 		DS18TimerStartValPlusHalfSec = DS18TimerStartVal + 500000000;
 		if(DS18TimerStartValPlusHalfSec > 1000000000)
 			DS18TimerStartValPlusHalfSec = DS18TimerStartValPlusHalfSec - 1000000000;
+		printf("----------- START TIMER VALUES ------------/n");
+		printf("DS18TimerStartVal: %d\n", DS18TimerStartVal);
+		printf("DS18TimerStartValPlusHalfSec: %d\n", DS18TimerStartValPlusHalfSec);
+		printf("-------------------------------------------/n");
 	}
 
 	if(DS18HalfSecFlag == 0)
@@ -176,12 +180,14 @@ void DS18ReadCheckTime ()
 			if(gettime_now.tv_nsec <= DS18TimerStartValPlusHalfSec && gettime_now.tv_nsec > DS18TimerStartVal)
 			DS18HalfSecFlag = 0;
 			DS18SecCnt++;	//increment 1 sec counter
+			printf("TmrStr LESS than 500, DS18SecCnt++/n");
 		}
 		else	//timerstart time greater than 500000000
 		{
 			if(gettime_now.tv_nsec <= DS18TimerStartValPlusHalfSec || gettime_now.tv_nsec > DS18TimerStartVal)
 			DS18HalfSecFlag = 0;
 			DS18SecCnt++;   //increment 1 sec counter
+			printf("TmrStr GREATER than 500, DS18SecCnt++/n");
 		}	
 	}
 	
@@ -191,6 +197,9 @@ void DS18ReadCheckTime ()
 		printf("sec count: %d\n", DS18SecCnt);
 		DS18SecCnt = 0;
 		//DS18GetTimeStartFlag = 0;  //note - this can be skipped.
+		printf("START TIMER VALUES/n");
+		printf("DS18TimerStartVal: %d\n", DS18TimerStartVal);
+		printf("DS18TimerStartValPlusHalfSec: %d\n", DS18TimerStartValPlusHalfSec);
 	}
 }
 
