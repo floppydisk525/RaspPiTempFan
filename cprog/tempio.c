@@ -173,7 +173,7 @@ void DS18ReadCheckTime ()
 			if(gettime_now.tv_nsec > DS18TimerStartValPlusHalfSec || gettime_now.tv_nsec <= DS18TimerStartVal)
 			{
 				DS18HalfSecFlag = 1;
-				printf("halfsecflag==0, <500. time count:  %d\n", gettime_now.tv_nsec);
+				printf("halfsecflag==0, <500. time count:  %ld\n", gettime_now.tv_nsec);
 			}
 		}
 		else	//timerstart time greater than 500000000
@@ -181,7 +181,7 @@ void DS18ReadCheckTime ()
 			if(gettime_now.tv_nsec > DS18TimerStartValPlusHalfSec && gettime_now.tv_nsec < DS18TimerStartVal)
 			{
 				DS18HalfSecFlag = 1;
-				printf("halfsecflag==0, >500. time count:  %d\n", gettime_now.tv_nsec);
+				printf("halfsecflag==0, >500. time count:  %ld\n", gettime_now.tv_nsec);
 			}
 		}
 	}
@@ -223,7 +223,7 @@ void DS18ReadCheckTime ()
 		struct tm tm = *localtime(&t);
 		
 		printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-		printf("time count in ds18seccnt if statement:  %d\n", gettime_now.tv_nsec);
+		printf("time count in ds18seccnt if statement:  %ld\n", gettime_now.tv_nsec);
 		printf("\n----------------------------------\n");
 	}
 }
