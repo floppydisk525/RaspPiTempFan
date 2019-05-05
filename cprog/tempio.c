@@ -275,7 +275,7 @@ int main(int argc, char **argv)
 
 		DS18ReadCheckTime (); //call read temperature
 
-        // wait a bit (which is better below?
+        // wait a bit (which is better below?)
         delay(10);      //time in ms
 //        DelayMicrosecondsNoSleep(10);     //time in msecs
     }
