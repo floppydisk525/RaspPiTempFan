@@ -143,6 +143,11 @@ void DS18ReadCheckTime ()
 	/*This subroutine works by setting DS18TimerStartVal equal to gettime_now.tv_nsec as the base for counting. It then sets a flag DS18GetTimeStartFlag to say that we ahve the base value.  As well is adds a half second to the base value to look at a range of 1/2 second later.  The half second could be made a lot smaller, but keep it large because we don't want to miss a second count (probably easier ways to do this.)
 	*/
 	
+	time_t t = time(NULL);
+	struct tm tm = *localtime(&t);
+
+	printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+	
 	clock_gettime(CLOCK_REALTIME, &gettime_now);   //get current time of counter
 //	printf("gettime_now: %ld\n",gettime_now.tv_nsec);
 	
@@ -204,8 +209,11 @@ void DS18ReadCheckTime ()
 		printf("DS18TimerStartVal: %d\n", DS18TimerStartVal);
 		printf("DS18TimerStartValPlusHalfSec: %d\n", DS18TimerStartValPlusHalfSec);
 		printf("----------- system time ------------\n");
-		printf("%s",__TIME__);
-		printf("\n---------- system time ------------\n");
+		time_t t = time(NULL);
+		struct tm tm = *localtime(&t);
+		
+		printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+		printf("\n----------------------------------\n");
 	}
 }
 
