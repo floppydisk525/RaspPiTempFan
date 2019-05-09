@@ -181,8 +181,8 @@ Release v0.01 tests the addition of the read temperature code and the second tim
 Release v0.02 adds the reading of temperature for qty 1 1-wire device. 
 
 ### FUTURE RELEASE STRATEGY  
-Release v0.1 adds multiple 1-wire devices.
-Release v0.1.1 adds storing values in sqllite DB.
+Release v0.1 adds multiple 1-wire devices.  
+Release v0.1.1 adds storing values in sqllite DB.  
 
 ## RESOURCES
 ### Links to Reference Sensor Projects  
