@@ -128,7 +128,8 @@ sudo nano /boot/config.txt
 
 ##### Add the following line:  
 dtoverlay=w1-gpio,gpiopin=26  
-The gpiopin changes the dtoverlay from default gpio 4 to gpio 26.  I'm using gpio 24 because gpio 4, gpio 5, and gpio 6 are used from blinkio.  
+The gpiopin changes the dtoverlay from default gpio 4 to gpio 26.  I'm using gpio 26 because gpio 4, gpio 5, and gpio 6 are used from blinkio.  If you want to use the default gpio pin 4, do not use the gpiopin=26 and only add the following line:  
+dtoverlay=w1-gpio  
 
 #### Reboot  
 sudo reboot  
@@ -147,7 +148,7 @@ cat w1_slave
 (Display output here...)
 
 ## LET'S CODE
-In order to expedite code, I borrowed the base code from https://github.com/floppydisk525/blinkio.  I already had a breadboard setup for an input, output LED, and heart beat timer.  Seems logical to use those items as a precursor for this project.  Ultimatley, I would like to have an input button to act as an override from the Raspberry Pi control and turn it on manually, if say the wife decides that's what needs to be done:-).  
+In order to expedite code, I borrowed the base code from https://github.com/floppydisk525/blinkio.  I already had a breadboard setup for an input, output LED, and heart beat timer.  Seems logical to use those items as a precursor for this project.  Ultimatley, I would like to have an input button to act as an override from the Raspberry Pi control and turn it on manually.  
 
 I renamed the code to tempio.c (from blinkio.c) and placed it in the cprog folder of this project.  Also, I updated the header text to indicate the change in the tempio.c file.  
 
@@ -165,6 +166,23 @@ gcc -o tempio -l rt tempio.c -l bcm2835
 Run the c program:  
 sudo ./tempio  
 
+### Program Additions for Temperature  
+We need to add a few methods for reading the temperature and are utilizing code from [Brad's c-program](http://bradsrpi.blogspot.com/2013/12/c-program-to-read-temperature-from-1.html), and saved that program for reference in the file Temp1sensor.c in the cprog/Ref folder.  
+
+The additions include:  
+Global Variables for Reading Temperature  
+DS18Setup () Method to setup 1-wire devices  
+DS18ReadCheckTime () Method that checks the temperature in a pre-defined interval in seconds
+DS18ReadTemp () Read the 1-wire DS18B20 device.  
+
+The main program calls the DS18ReadCheckTime () method and when the desired number of seconds elapse, the method calls DS18ReadTemp() method to actually read the one-wire device.  
+
+Release v0.01 tests the addition of the read temperature code and the second timer method, but doesn't actually read the temperature.  
+Release v0.02 adds the reading of temperature for qty 1 1-wire device. 
+
+### FUTURE RELEASE STRATEGY  
+Release v0.1 adds multiple 1-wire devices.
+Release v0.1.1 adds storing values in sqllite DB.
 
 ## RESOURCES
 ### Links to Reference Sensor Projects  
