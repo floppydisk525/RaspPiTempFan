@@ -185,23 +185,30 @@ Release v0.1 adds multiple 1-wire devices.
 Release v0.1.1 adds storing values in sqllite DB.  
 
 ## RESOURCES
-### Links to Reference Sensor Projects  
-https://circuitdigest.com/microcontroller-projects/raspberry-pi-ds18b20-temperature-sensor-interfacing
-http://bradsrpi.blogspot.com/2013/12/c-program-to-read-temperature-from-1.html
-https://www.raspberrypi.org/forums/viewtopic.php?t=70709
-http://www.circuitbasics.com/raspberry-pi-ds18b20-temperature-sensor-tutorial/
-https://www.raspberrypi-spy.co.uk/2013/03/raspberry-pi-1-wire-digital-thermometer-sensor/
-https://pinout.xyz/pinout/1_wire
+### Links to other resources  
+/cprog/ref/RefLinks.md  
+
+### Links to Reference DS18B20 Sensor Projects   
+https://circuitdigest.com/microcontroller-projects/raspberry-pi-ds18b20-temperature-sensor-interfacing  
+http://bradsrpi.blogspot.com/2013/12/c-program-to-read-temperature-from-1.html  
+https://www.raspberrypi.org/forums/viewtopic.php?t=70709  
+http://www.circuitbasics.com/raspberry-pi-ds18b20-temperature-sensor-tutorial/  
+https://www.raspberrypi-spy.co.uk/2013/03/raspberry-pi-1-wire-digital-thermometer-sensor/  
+https://pinout.xyz/pinout/1_wire  
+
+### Links to C code examples  
+http://bradsrpi.blogspot.com/2013/12/c-program-to-read-temperature-from-1.html  
+http://bradsrpi.blogspot.com/2014/06/c-program-to-read-multiple-ds18b20-1.html  
 
 ### Links to Git Markdown to help w/ this README.md page
-https://guides.github.com/features/mastering-markdown/
-https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#blockquotes
+https://guides.github.com/features/mastering-markdown/  
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#blockquotes  
 
 ### Links to Git committing for us git dummies
-https://stackoverflow.com/questions/9329244/how-to-commit-and-push-all-changes-including-deletes  
-Good Git tutorial I stumbled across:
-https://medium.freecodecamp.org/the-essential-git-handbook-a1cf77ed11b5
+https://stackoverflow.com/questions/9329244/how-to-commit-and-push-all-changes-including-deletes    
+Good Git tutorial I stumbled across:  
+https://medium.freecodecamp.org/the-essential-git-handbook-a1cf77ed11b5   
 
-### PID example
-https://nicisdigital.wordpress.com/2011/06/27/proportional-integral-derivative-pid-controller/
+### PID example  
+https://nicisdigital.wordpress.com/2011/06/27/proportional-integral-derivative-pid-controller/   
 
