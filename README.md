@@ -186,7 +186,7 @@ Release v0.1.1 adds storing values in sqllite DB.
 
 ## RESOURCES
 ### Links to other resources  
-[RefLinks.md](/cprog/ref/RefLinks.md)  
+[RefLinks.md](https://github.com/floppydisk525/RaspPiTempFan/blob/progcomb/cprog/Ref/RefLinks.md)  
 
 ### Links to Reference DS18B20 Sensor Projects   
 https://circuitdigest.com/microcontroller-projects/raspberry-pi-ds18b20-temperature-sensor-interfacing  
