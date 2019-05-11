@@ -138,6 +138,25 @@ void DS18Setup ()
 	sprintf(devPath, "%s/%s/w1_slave", path, dev);	
 }
 
+void DS18ReadTemp()
+{
+	int fd = open(devPath, O_RDONLY);
+	if(fd == -1)
+	{
+		perror ("Couldn't open the w1 device.");
+		//return 1;     //this is from temp read prog.  need to move!
+	}
+	while((numRead = read(fd, buf, 256)) > 0) 
+	{
+		strncpy(tmpData, strstr(buf, "t=") + 2, 5); 
+		float tempC = strtof(tmpData, NULL);
+		printf("Device: %s  - ", dev); 
+		printf("Temp: %.3f C  ", tempC / 1000);
+		printf("%.3f F\n\n", (tempC / 1000) * 9 / 5 + 32);
+	}
+	close(fd);
+}
+
 void DS18ReadCheckTime ()
 {
 	/*This subroutine works by setting DS18TimerStartVal equal to gettime_now.tv_nsec as the base for counting. It then sets a flag DS18GetTimeStartFlag to say that we ahve the base value.  As well as adds a half second to the base value to look at a range of 1/2 second later.  The half second could be made a lot smaller, but keep it large because we don't want to miss a second count (there's probably WAY easier ways to do this.)
@@ -218,25 +237,6 @@ void DS18ReadCheckTime ()
 		printf("READ TEMPERATURE (time): %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 		//----------------  delete to here -----------------
 	}
-}
-
-void DS18ReadTemp()
-{
-	int fd = open(devPath, O_RDONLY);
-	if(fd == -1)
-	{
-		perror ("Couldn't open the w1 device.");
-		//return 1;     //this is from temp read prog.  need to move!
-	}
-	while((numRead = read(fd, buf, 256)) > 0) 
-	{
-		strncpy(tmpData, strstr(buf, "t=") + 2, 5); 
-		float tempC = strtof(tmpData, NULL);
-		printf("Device: %s  - ", dev); 
-		printf("Temp: %.3f C  ", tempC / 1000);
-		printf("%.3f F\n\n", (tempC / 1000) * 9 / 5 + 32);
-	}
-	close(fd);
 }
 
 //-----------------------------------------------------------
