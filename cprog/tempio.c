@@ -208,10 +208,9 @@ void DS18ReadCheckTime ()
 	
 	if(DS18SecCnt == DS18ReadTimeInterval)
 	{
-		//DS18ReadTemp ();     //read value of temp HERE
-		DS18SecCnt = 0;
-		//DS18GetTimeStartFlag = 0;  //note - this can be skipped.
-		
+		DS18ReadTemp ();     //read value of temp HERE
+		DS18SecCnt = 0;		 //set second counter back to 0.
+				
 		//following lines print to command line to show reading temp
 		//DELETE when ready.
 				time_t t = time(NULL);
