@@ -39,7 +39,7 @@ Red- VCC
 Yellow- DATA  
 Black-GND  
 
-### HiLetgo DHT11 Temperature and Humidity Sensor Module (Optional)
+### HiLetgo DHT11 Temperature and Humidity Sensor Module (Not Implemented)
 [HiLetgo 5pcs DHT11 Temperature and Humidity Sensor Module](https://www.amazon.com/gp/product/B01DKC2GQ0)
 ![alt text][DHT11]
 
@@ -176,13 +176,15 @@ DS18ReadCheckTime () Method that checks the temperature in a pre-defined interva
 DS18ReadTemp () Read the 1-wire DS18B20 device.  
 
 The main program calls the DS18ReadCheckTime () method and when the desired number of seconds elapse, the method calls DS18ReadTemp() method to actually read the one-wire device.  
-
+### RELEASES
 Release v0.01 tests the addition of the read temperature code and the second timer method, but doesn't actually read the temperature.  
 Release v0.02 adds the reading of temperature for qty 1 1-wire device. 
 
 ### FUTURE RELEASE STRATEGY  
 Release v0.1 adds multiple 1-wire devices.  
 Release v0.1.1 adds storing values in sqllite DB.  
+Release v0.x pthread to remove lagginess from push button (This is nice to have for this project).  See [RefLinks.md](https://github.com/floppydisk525/RaspPiTempFan/blob/progcomb/cprog/Ref/RefLinks.md) file for web links to example.  
+Release v0.x DHT11 sensor connection.  Currently not implemented.  
 
 ## RESOURCES
 ### Links to other resources  
