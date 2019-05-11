@@ -17,6 +17,10 @@ https://stackoverflow.com/questions/54819866/in-asp-net-core-how-to-use-sqlite
 ## NODE RED (Really good resource)
 Working w/ time series:  https://www.youtube.com/watch?v=ccKspiI8FRw
 
+## Pthread - Threading
+https://www.includehelp.com/articles/threading-in-c-programming-language-with-gcc-linux.aspx
+https://www.geeksforgeeks.org/multithreading-c-2/
+
 ## PID Controller (Simple example)
 https://nicisdigital.wordpress.com/2011/06/27/proportional-integral-derivative-pid-controller/  
 
