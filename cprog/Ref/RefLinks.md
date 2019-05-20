@@ -31,6 +31,8 @@ using c code https://www.raspberrypi.org/forums/viewtopic.php?t=91154
 ## DHT11
 c code http://www.uugear.com/portfolio/read-dht1122-temperature-humidity-sensor-from-raspberry-pi/  
 http://www.uugear.com/portfolio/dht11-humidity-temperature-sensor-module/   
+https://www.iot-programmer.com/index.php/books/22-raspberry-pi-and-the-iot-in-c/chapters-raspberry-pi-and-the-iot-in-c/41-raspberry-pi-and-the-iot-in-c-a-custom-protocol-the-dht11-dht22?start=3  
+
 ### custom protocol for DHT11
 [Custom Protocol from iot-programmer](https://www.iot-programmer.com/index.php/books/22-raspberry-pi-and-the-iot-in-c/chapters-raspberry-pi-and-the-iot-in-c/41-raspberry-pi-and-the-iot-in-c-a-custom-protocol-the-dht11-dht22?start=3)  
 

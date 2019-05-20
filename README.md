@@ -40,7 +40,7 @@ Yellow- DATA
 Black-GND  
 
 ### HiLetgo DHT11 Temperature and Humidity Sensor Module (Not Implemented)
-[HiLetgo 5pcs DHT11 Temperature and Humidity Sensor Module](https://www.amazon.com/gp/product/B01DKC2GQ0)
+[HiLetgo 5pcs DHT11 Temperature and Humidity Sensor Module](https://www.amazon.com/gp/product/B01DKC2GQ0)  Unfortunately, this sensor has not been added to the c-code and is slated for a future release.  The impetus to include this is to monitor humidity in the garage.  The real need is to monitor temperature, which is being done with the DS18B20, so this is an add-on slated for future implementation.  See the [RefLinks.md](https://github.com/floppydisk525/RaspPiTempFan/blob/progcomb/cprog/Ref/RefLinks.md) for DHT11 info.  
 ![alt text][DHT11]
 
 ### 10 Inch Shutter Exhaust Fan
@@ -137,6 +137,7 @@ sudo reboot
 #### Check for Connected Devices
 cd /sys/bus/w1/devices  
 ls  
+Response: 28-01143c62f7aa  28-01143fb265aa  28-01143fc657aa  w1_bus_master1  
 
 #### Get the Sensor ID
 Each sensor has a unique ID beginning with 28-00000xxxxxxx.  Check the temperature by issuing the following commands:  
@@ -181,13 +182,15 @@ Release v0.01 tests the addition of the read temperature code and the second tim
 Release v0.02 adds the reading of temperature for qty 1 1-wire device. 
 
 ### FUTURE RELEASE STRATEGY  
-Release v0.1 adds multiple 1-wire devices.  
-Release v0.1.1 adds storing values in sqllite DB.  
+Release v0.1 to adds multiple 1-wire devices.  
+Release v0.1.1 to add storing values in sqllite DB.  
+Release v0.2 to add simple/basic fan control based on outside and garage temperature
 Release v0.x pthread to remove lagginess from push button (This is nice to have for this project).  See [RefLinks.md](https://github.com/floppydisk525/RaspPiTempFan/blob/progcomb/cprog/Ref/RefLinks.md) file for web links to example.  
-Release v0.x DHT11 sensor connection.  Currently not implemented.  
+Release v0.x DHT11 sensor connectivity.  Currently not implemented.  
+Release v0.x PID control.  
 
-## RESOURCES
-### Links to other resources  
+## RESOURCES  
+### Links to more resources (because you always need more)  
 [RefLinks.md](https://github.com/floppydisk525/RaspPiTempFan/blob/progcomb/cprog/Ref/RefLinks.md)  
 
 ### Links to Reference DS18B20 Sensor Projects   
