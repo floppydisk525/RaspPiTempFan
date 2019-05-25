@@ -21,6 +21,7 @@
 //
 //After installing bcm2835, you can build and run this program
 //with something like:
+//gcc -Wall tempio.c -o tempio -l bcm2835
 //gcc -Wall -std=gnu99 tempio.c -o tempio -l bcm2835
 //sudo ./tempio
 //
@@ -56,7 +57,7 @@ char dev[16];      // Dev ID
 char devPath[128]; // Path to device
 char buf[256];     // Data from device
 char tmpData[6];   // Temp C * 1000 reported by device 
-const char path[] = "/sys/bus/w1/devices"; 
+char path[] = "/sys/bus/w1/devices"; 
 ssize_t numRead;
  
 //define timing variables to read ds18b20
@@ -141,7 +142,7 @@ void DS18Setup ()
 	else
 	{
 		perror ("Couldn't open the w1 devices directory");
-		return 1;
+		//return 1;
 	}
 	devCnt = i;
 	i = 0;
@@ -165,7 +166,7 @@ void DS18Setup ()
 	else
 	{
 		perror ("Couldn't open the w1 devices directory");
-		return 1;
+		//return 1;
 	}
 	i = 0;
 }
@@ -193,7 +194,7 @@ void DS18ReadTemp()
 		close(fd);
 		j++;
 	}
-	j=0
+	j = 0;
 	printf("%s\n", ""); // Blank line after each cycle
 }
 
