@@ -67,6 +67,9 @@ int DS18ReadTimeInterval = 2;  //read temp every 2 sec
 int DS18HalfSecFlag = 0;       //half second time ctr flag
 int DS18SecCnt	= 0;            //second counter
 
+//multiple timing variables
+int devCnt = 0;
+
 //-----------------------------------------------------
 //------------------ HEARTBEAT TIME -------------------
 //-----------------------------------------------------
@@ -121,46 +124,77 @@ void DelayMicrosecondsNoSleep (int delay_us)
 
 void DS18Setup ()
 {
+	int i = 0;
+
+	// 1st pass counts devices
 	dir = opendir (path);
 	if (dir != NULL)
 	{
-		while ((dirent = readdir (dir)))
-			// 1-wire devices are links beginning with 28-
-			if (dirent->d_type == DT_LNK && 
-				strstr(dirent->d_name, "28-") != NULL) 
-			{ 
-				strcpy(dev, dirent->d_name);
-				printf("\nDevice: %s\n", dev);
+		while ((dirent = readdir (dir))) {
+			 // 1-wire devices are links beginning with 28-
+			if (dirent->d_type == DT_LNK && strstr(dirent->d_name, "28-") != NULL) {
+				i++;
 			}
-        (void) closedir (dir);
-    }
+		}
+		(void) closedir (dir);
+	}
 	else
 	{
 		perror ("Couldn't open the w1 devices directory");
-		//return 1;   //NOTE this is from temp reading and need to chnage
+		return 1;
 	}
+	devCnt = i;
+	i = 0;
 
-    // Assemble path to OneWire device
-	sprintf(devPath, "%s/%s/w1_slave", path, dev);	
+	// 2nd pass allocates space for data based on device count
+	char dev[devCnt][16];
+	char devPath[devCnt][128];
+	dir = opendir (path);
+	if (dir != NULL){
+		while ((dirent = readdir (dir))) {
+			// 1-wire devices are links beginning with 28-
+			if (dirent->d_type == DT_LNK && strstr(dirent->d_name, "28-") != NULL) { 
+				strcpy(dev[i], dirent->d_name);
+			   // Assemble path to OneWire device
+				sprintf(devPath[i], "%s/%s/w1_slave", path, dev[i]);
+				i++;
+			}
+		}
+		(void) closedir (dir);
+	}
+	else
+	{
+		perror ("Couldn't open the w1 devices directory");
+		return 1;
+	}
+	i = 0;
 }
 
 void DS18ReadTemp()
 {
-	int fd = open(devPath, O_RDONLY);
-	if(fd == -1)
+	int j = 0;		//counter for reading sensors
+	
+	while(j != devCnt)
 	{
-		perror ("Couldn't open the w1 device.");
-		//return 1;     //this is from temp read prog.  need to move!
+		int fd = open(devPath[j], O_RDONLY);
+		if(fd == -1)
+		{
+			perror ("Couldn't open the w1 device.");
+			//return 1;
+		}
+		while((numRead = read(fd, buf, 256)) > 0) 
+		{
+			strncpy(tmpData, strstr(buf, "t=") + 2, 5);
+			float tempC = strtof(tmpData, NULL);
+			printf("Device: %s - ", dev[j]);
+			printf("Temp: %.3f C  ", tempC / 1000);
+			printf("%.3f F\n", (tempC / 1000) * 9 / 5 + 32);
+		}
+		close(fd);
+		j++;
 	}
-	while((numRead = read(fd, buf, 256)) > 0) 
-	{
-		strncpy(tmpData, strstr(buf, "t=") + 2, 5); 
-		float tempC = strtof(tmpData, NULL);
-		printf("Device: %s  - ", dev); 
-		printf("Temp: %.3f C  ", tempC / 1000);
-		printf("%.3f F\n\n", (tempC / 1000) * 9 / 5 + 32);
-	}
-	close(fd);
+	j=0
+	printf("%s\n", ""); // Blank line after each cycle
 }
 
 void DS18ReadCheckTime ()
