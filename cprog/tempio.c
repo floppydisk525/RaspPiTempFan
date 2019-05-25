@@ -1,5 +1,7 @@
 //tempio.c
 //
+//----------------  this is 'before' entering multisensor.c --------
+//
 //This program started with the blinkio program and 
 //adds code for a BS18B20 temp sensor.  Also, it changes
 //the pushbotton from a momentary to a latch.
