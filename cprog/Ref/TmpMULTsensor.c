@@ -2,6 +2,8 @@
 //gcc -Wall -o w1m w1m.c
 //./w1m
 
+// This program reads multiple sensors and prints them to cmd line
+
 // Program copied from
 //    http://bradsrpi.blogspot.com/2014/01/c-program-to-read-temperature-from.html
 
