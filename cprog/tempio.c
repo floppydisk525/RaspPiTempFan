@@ -57,7 +57,7 @@ char dev[16];      // Dev ID
 char devPath[128]; // Path to device
 char buf[256];     // Data from device
 char tmpData[6];   // Temp C * 1000 reported by device 
-const char *path[] = "/sys/bus/w1/devices"; 
+const char path[] = "/sys/bus/w1/devices"; 
 ssize_t numRead;
  
 //define timing variables to read ds18b20
