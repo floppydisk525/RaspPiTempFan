@@ -50,22 +50,22 @@ int CheckTime = 0;      //boolean (int) to allow time check.
 struct timespec gettime_now;
 
 //define global variables for DS18b20 and file system reading
- DIR *dir;
- struct dirent *dirent;
- char dev[16];      // Dev ID
- char devPath[128]; // Path to device
- char buf[256];     // Data from device
- char tmpData[6];   // Temp C * 1000 reported by device 
- const char path[] = "/sys/bus/w1/devices"; 
- ssize_t numRead;
+DIR *dir;
+struct dirent *dirent;
+char dev[16];      // Dev ID
+char devPath[128]; // Path to device
+char buf[256];     // Data from device
+char tmpData[6];   // Temp C * 1000 reported by device 
+const char path[] = "/sys/bus/w1/devices"; 
+ssize_t numRead;
  
- //define timing variables to read ds18b20
- int DS18TimerStartVal = 0; 		//time that counter starts
- int DS18TimerStartValPlusHalfSec = 0;	//time counter starts plus half second
- int DS18GetTimeStartFlag = 0;	//Indicates counter is counting and 'have' start time
- int DS18ReadTimeInterval = 2;  //read temp every 2 sec
- int DS18HalfSecFlag = 0;       //half second time ctr flag
- int DS18SecCnt	= 0;            //second counter
+//define timing variables to read ds18b20
+int DS18TimerStartVal = 0; 		//time that counter starts
+int DS18TimerStartValPlusHalfSec = 0;	//time counter starts plus half second
+int DS18GetTimeStartFlag = 0;	//Indicates counter is counting and 'have' start time
+int DS18ReadTimeInterval = 2;  //read temp every 2 sec
+int DS18HalfSecFlag = 0;       //half second time ctr flag
+int DS18SecCnt	= 0;            //second counter
 
 //-----------------------------------------------------
 //------------------ HEARTBEAT TIME -------------------
@@ -77,17 +77,17 @@ struct timespec gettime_now;
 //  reset the CheckTime variable to 0 (don't check) and toggle the GPIO output.
 void HeartBeat()
 {
-   clock_gettime(CLOCK_REALTIME, &gettime_now);
-//   printf("gettime_now: %ld\n",gettime_now.tv_nsec);
+	clock_gettime(CLOCK_REALTIME, &gettime_now);
+	//printf("gettime_now: %ld\n",gettime_now.tv_nsec);
 
    if(gettime_now.tv_nsec > 500000000)
-     CheckTime = 1;
+	   CheckTime = 1;
 
    if (CheckTime == 1 && gettime_now.tv_nsec <500000000)
    {
-     CheckTime = 0;                           //set checktime false
-     hb_state_1s ^= 1;                        //toggle the pin state
-     bcm2835_gpio_write(OUT_GPIO5, hb_state_1s);
+		CheckTime = 0;                           //set checktime false
+		hb_state_1s ^= 1;                        //toggle the pin state
+		bcm2835_gpio_write(OUT_GPIO5, hb_state_1s);
    }
 }
 
@@ -109,7 +109,7 @@ void DelayMicrosecondsNoSleep (int delay_us)
 		clock_gettime(CLOCK_REALTIME, &dm_gettime_now);
 		dm_time_difference = dm_gettime_now.tv_nsec - dm_start_time;
 		if (dm_time_difference < 0)
-			dm_time_difference += 1000000000;				//(Rolls over every 1 second)
+			dm_time_difference += 1000000000;		//(Rolls over every 1 second)
 		if (dm_time_difference > (delay_us * 1000))		//Delay for # nS
 			break;
 	}
@@ -123,16 +123,17 @@ void DS18Setup ()
 {
 	dir = opendir (path);
 	if (dir != NULL)
-		{
+	{
 		while ((dirent = readdir (dir)))
-		// 1-wire devices are links beginning with 28-
-		if (dirent->d_type == DT_LNK && 
-			strstr(dirent->d_name, "28-") != NULL) { 
+			// 1-wire devices are links beginning with 28-
+			if (dirent->d_type == DT_LNK && 
+				strstr(dirent->d_name, "28-") != NULL) 
+			{ 
 				strcpy(dev, dirent->d_name);
 				printf("\nDevice: %s\n", dev);
-		}
+			}
         (void) closedir (dir);
-        }
+    }
 	else
 	{
 		perror ("Couldn't open the w1 devices directory");
@@ -252,7 +253,7 @@ int main(int argc, char **argv)
 {
     // If you call this, it will not actually access the GPIO
     // Use for testing
-//    bcm2835_set_debug(1);
+	//bcm2835_set_debug(1);
     if (!bcm2835_init())
         return 1;
 
