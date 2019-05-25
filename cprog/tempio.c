@@ -1,6 +1,8 @@
 //tempio.c
 //
-//----------------  this is 'before' entering multisensor.c --------
+//---------------------------------------------------------
+//Code from TmpMULTsensor.c has been added to this program.
+//---------------------------------------------------------
 //
 //This program started with the blinkio program and 
 //adds code for a BS18B20 temp sensor.  Also, it changes
