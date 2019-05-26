@@ -53,8 +53,8 @@ struct timespec gettime_now;
 //define global variables for DS18b20 and file system reading
 DIR *dir;
 struct dirent *dirent;
-char dev[16];      // Dev ID
-char devPath[128]; // Path to device
+//char dev[16];      // Dev ID
+//char devPath[128]; // Path to device
 char buf[256];     // Data from device
 char tmpData[6];   // Temp C * 1000 reported by device 
 //char path[] = "/sys/bus/w1/devices";     //moved to void DS18Setup ()
