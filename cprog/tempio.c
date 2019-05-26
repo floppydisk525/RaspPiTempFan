@@ -70,8 +70,8 @@ int DS18SecCnt	= 0;            //second counter
 
 //multiple timing variables
 int devCnt = 0;
-external char dev[][16];
-external char devPath[][128];
+extern char dev[][16];
+extern char devPath[][128];
 
 //-----------------------------------------------------
 //------------------ HEARTBEAT TIME -------------------
