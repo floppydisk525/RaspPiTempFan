@@ -151,8 +151,8 @@ void DS18Setup ()
 	i = 0;
 
 	// 2nd pass allocates space for data based on device count
-	char dev[devCnt][16];
-	char devPath[devCnt][128];
+	//char dev[devCnt][16];
+	//char devPath[devCnt][128];
 	dir = opendir (path);
 	if (dir != NULL){
 		while ((dirent = readdir (dir))) {
@@ -176,8 +176,8 @@ void DS18Setup ()
 
 void DS18ReadTemp()
 {
-	char dev[devCnt][16];
-	char devPath[devCnt][128];
+	//char dev[devCnt][16];
+	//char devPath[devCnt][128];
 	int j = 0;		//counter for reading sensors
 	
 	while(j != devCnt)
@@ -304,6 +304,8 @@ int main(int argc, char **argv)
     bcm2835_gpio_fsel(OUT_GPIO5, BCM2835_GPIO_FSEL_OUTP);
     bcm2835_gpio_fsel(OUT_GPIO6, BCM2835_GPIO_FSEL_OUTP);
 
+	char dev[2][16];
+	char devPath[2][128];
 	DS18Setup ();	//setup DS18 info
 
     //-----------------------------------------------------------
