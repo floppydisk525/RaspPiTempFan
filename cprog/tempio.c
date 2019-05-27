@@ -176,6 +176,8 @@ void DS18Setup ()
 
 void DS18ReadTemp()
 {
+	char dev[devCnt][16];
+	char devPath[devCnt][128];
 	int j = 0;		//counter for reading sensors
 	
 	while(j != devCnt)
