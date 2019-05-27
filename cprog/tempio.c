@@ -151,8 +151,8 @@ void DS18Setup ()
 	i = 0;
 
 	// 2nd pass allocates space for data based on device count
-	//char dev[devCnt][16];
-	//char devPath[devCnt][128];
+	char dev[devCnt][16];
+	char devPath[devCnt][128];
 	dir = opendir (path);
 	if (dir != NULL){
 		while ((dirent = readdir (dir))) {
