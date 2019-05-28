@@ -1,0 +1,115 @@
+pi@autopi:~/RaspPiTempFan/cprog $ gcc -Wall tempio.c -o tempio -l bcm2835
+tempio.c: In function ‘main’:
+tempio.c:308:7: warning: unused variable ‘devPath’ [-Wunused-variable]
+  char devPath[2][128];
+       ^~~~~~~
+tempio.c:307:7: warning: unused variable ‘dev’ [-Wunused-variable]
+  char dev[2][16];
+       ^~~
+/tmp/ccoj8kzv.o: In function `DS18Setup':
+tempio.c:(.text+0x374): undefined reference to `dev'
+tempio.c:(.text+0x378): undefined reference to `devPath'
+/tmp/ccoj8kzv.o: In function `DS18ReadTemp':
+tempio.c:(.text+0x4f0): undefined reference to `devPath'
+tempio.c:(.text+0x504): undefined reference to `dev'
+collect2: error: ld returned 1 exit status
+pi@autopi:~/RaspPiTempFan/cprog $
+
+/* -----------------------   NOTES  -------------------------
+1. method one - use the extern keyword, but doesn't seem to be global?
+2. use a pointer to the 2d array (char array).  here are some examples:
+--------------------------------------------------------------*/
+
+//This 'flow' is what I am looking for, but doesn't make sense??
+
+https://stackoverflow.com/questions/16724368/how-to-pass-a-2d-array-by-pointer-in-c
+int main( void ){
+    char array[50][50];
+    int SIZE;
+
+    ...call function to fill array... this part works.
+
+    printarray( array, SIZE )
+}
+
+//void printarray( char **array, int SIZE ){     //wrong per stack overflow
+void printarray( char array[][50], int SIZE )
+    int i;
+    int j;
+
+    for( j = 0; j < SIZE; j++ ){
+        for( i = 0; i < SIZE; i ++){
+            printf( "%c ", array[j][i] );
+        }
+        printf( "\n" );
+    }
+}
+
+
+https://www.linuxquestions.org/questions/programming-9/c-returning-char-array-pointer-4175490314/
+#include <stdlib.h>
+#include <stdio.h>
+
+char* get_message ()
+{
+    char *mymessage;
+    mymessage = malloc (sizeof (char) * 15);
+    
+    strcpy(mymessage, "Hello World");
+    
+    return mymessage;
+}
+
+int main (int argc, char *argv [])
+{
+    char *message;
+    
+    message = get_message ();
+    
+    printf ("%s\n", message); //this returns output of: H
+
+    free( message );
+
+    return 0;
+}
+
+
+https://stackoverflow.com/questions/8144917/returning-a-2d-char-array-in-c
+#include <stdlib.h>
+
+void test(char**,unsigned int,unsigned int);
+
+const unsigned int sz_fld = 50 + 1;
+const unsigned int sz_ffld = 10;
+
+int main(void) {
+    char fld[sz_ffld][sz_fld];
+    for (unsigned char i=0;i<sz_ffld;++i) {
+        strcpy(fld[i],"");
+    }
+
+    strcpy(fld[0],"one");
+    strcpy(fld[1],"two");
+    strcpy(fld[2],"three");
+
+    char** pfld = malloc(sz_ffld*sizeof(char*));
+    for (unsigned int i=0;i<sz_ffld;++i) {
+        *(pfld+i) = &fld[i][0];
+    }
+
+    test(pfld,sz_ffld,sz_fld);
+
+    printf("%s\n",fld[0]);
+    printf("%s\n",fld[1]);
+    printf("%s\n",fld[2]);
+
+    free(pfld);
+
+    return(0);
+}
+
+void test(char** fld,unsigned int m,unsigned int n) {
+    strcpy(*(fld+0),"eleven");
+    strcpy(*(fld+1),"twelve");
+    return;
+}
