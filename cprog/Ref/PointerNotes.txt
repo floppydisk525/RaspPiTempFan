@@ -15,6 +15,12 @@ tempio.c:(.text+0x504): undefined reference to `dev'
 collect2: error: ld returned 1 exit status
 pi@autopi:~/RaspPiTempFan/cprog $
 
+/*----------------------- OTHER QUESTIONS -------------------
+1. How to weave a pthread threading into the pushbutton and temp sensor reading.
+2. Should i declare functions separately, then main, then function code?  Or 
+leave as is and  declare & function code before main?
+*/
+
 /* -----------------------   NOTES  -------------------------
 1. method one - use the extern keyword, but doesn't seem to be global?
 2. use a pointer to the 2d array (char array).  here are some examples:
@@ -29,7 +35,8 @@ int main( void ){
 
     ...call function to fill array... this part works.
 
-    printarray( array, SIZE )
+    //printarray( array, SIZE )
+	void printarray( char array[][50], int SIZE )
 }
 
 //void printarray( char **array, int SIZE ){     //wrong per stack overflow
