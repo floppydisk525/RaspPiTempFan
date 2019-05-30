@@ -30,7 +30,7 @@ void fillarray (){
 	dev[2][16]="dev 2, 16";
 	int i;
 	printf("\n");
-	printf("Printed from fillarry");
+	printf("Printed from fillarry\n");
 	for (i = 0; i<3; i++){
 		printf("dev variable is: %s\n", dev[i][16]);
 	}
