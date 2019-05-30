@@ -29,7 +29,8 @@ void fillarray (){
 	dev[1][16]="dev 1, 16";
 	dev[2][16]="dev 2, 16";
 	int i;
-	
+	printf("\n");
+	printf("Printed from fillarry");
 	for (i = 0; i<3; i++){
 		printf("dev variable is: %s\n", dev[i][16]);
 	}
@@ -46,7 +47,7 @@ int getTempSensCnt () {
 int main( void ){
 //    char array[][50];
 //    int SIZE;
-	
+	int i;
 	//int tempSensCnt;
 	
 	int tempSensCnt = getTempSensCnt();
@@ -55,6 +56,10 @@ int main( void ){
 //    ...call function to fill array... this part works.
 	fillarray();
     //printarray( array, SIZE );
+	printf("Printed from main");
+	for (i = 0; i<3; i++){
+		printf("Dev variable is: %s\n", dev[i][16]);
+	}
 }
 
 
