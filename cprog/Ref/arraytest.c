@@ -47,8 +47,8 @@ int getTempSensCnt () {
 int main( void ){
 //    char array[][50];
 //    int SIZE;
-	char dev[0][16] = "0";
-	char devPath[0][128] = "0";
+	dev[0][16] = "0";
+	devPath[0][128] = "0";
 	int i;
 	
 	printf("Dev variable before tempSensCnt is: %s\n", dev[0][16]);
