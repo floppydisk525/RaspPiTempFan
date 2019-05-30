@@ -29,7 +29,7 @@ void fillarray ( char ** array, int SIZE){
 int getTempSensCnt (char *p) {
 	int cnt = 3;
 	
-	printf ("The string is: %s/n", p);
+	printf ("The string is: %s\n", p);
 	return cnt;	
 }
 
