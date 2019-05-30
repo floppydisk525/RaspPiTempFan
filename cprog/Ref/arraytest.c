@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <string.h>
 
+char *path = "/sys/bus/w1/devices";    //char pointer to path (that doesn't change)
+
 //void printarray( char **array, int SIZE )
 void printarray( char array[][50], int SIZE ){
     int i;
@@ -24,9 +26,11 @@ void fillarray ( char ** array, int SIZE){
 	
 }
 
-int getTempSensCnt () {
+int getTempSensCnt (char *p) {
 	int cnt = 3;
-	return cnt;
+	
+	printf ("The string is: %s/n", p);
+	return cnt;	
 }
 
 int main( void ){
@@ -35,7 +39,7 @@ int main( void ){
 	
 	//int tempSensCnt;
 	
-	int tempSensCnt = getTempSensCnt();
+	int tempSensCnt = getTempSensCnt(path);
 	printf ("The count is: %d\n", tempSensCnt);
 
 //    ...call function to fill array... this part works.
