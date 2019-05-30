@@ -47,16 +47,17 @@ int getTempSensCnt () {
 int main( void ){
 //    char array[][50];
 //    int SIZE;
+	dev[0][16] = "0";
+	devPath[0][16] = "0";
 	int i;
-	//int tempSensCnt;
-	
+		
 	int tempSensCnt = getTempSensCnt();
 	printf ("The count is: %d\n", tempSensCnt);
 
 //    ...call function to fill array... this part works.
 	fillarray();
     //printarray( array, SIZE );
-	printf("Printed from main");
+	printf("Printed from main\n");
 	for (i = 0; i<3; i++){
 		printf("Dev variable is: %s\n", dev[i][16]);
 	}
