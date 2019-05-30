@@ -21,6 +21,10 @@ Working w/ time series:  https://www.youtube.com/watch?v=ccKspiI8FRw
 https://www.includehelp.com/articles/threading-in-c-programming-language-with-gcc-linux.aspx
 https://www.geeksforgeeks.org/multithreading-c-2/
 
+## C Programming notes
+Great book on C programming:  
+https://www.dipmat.univpm.it/~demeio/public/the_c_programming_language_2.pdf
+
 ## PID Controller (Simple example)
 https://nicisdigital.wordpress.com/2011/06/27/proportional-integral-derivative-pid-controller/  
 
