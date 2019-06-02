@@ -2,3 +2,6 @@ tempio
 temptest
 /Ref/temp
 /Ref/arraytest
+*.obj
+*.exe
+temparraytest
