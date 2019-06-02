@@ -1,6 +1,9 @@
+//Purpose of this program is to try malloc for 2d char array AND
+//  have clang from microsoft compile it successfully.
+
 //Build and run this program with something like:
-//gcc -Wall arraytest.c -o arraytest
-//sudo ./arraytest
+//gcc -Wall arraymalloc.c -o arraymalloc
+//sudo ./arraymalloc
 
 //good book:  https://www.dipmat.univpm.it/~demeio/public/the_c_programming_language_2.pdf
 
@@ -64,8 +67,8 @@ int main( void ){
 		printf("Dev variable is: %s\n", dev[i][16]);
 	}
 }
-
-
+//char *dev[0][16];
+//char *devPath[0][128];
 
 /*  NOTES to Mark!!  I found that I could pass the pointer or not pass it 
 through the function call.  The following exmaples are the SAME!
