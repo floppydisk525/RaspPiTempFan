@@ -7,11 +7,13 @@
 
 //good book:  https://www.dipmat.univpm.it/~demeio/public/the_c_programming_language_2.pdf
 
+// good example here:  https://www.quora.com/How-can-I-declare-a-2-dimensional-array-of-char-in-C
+
 #include <stdio.h>
 #include <string.h>
 
 char *path = "/sys/bus/w1/devices";    //char pointer to path (that doesn't change)
-char *dev[][16];
+//char **dev;
 //char *devPath[][128];
 
 //void printarray( char **array, int SIZE )
@@ -27,18 +29,19 @@ void printarray( char array[][50], int SIZE ){
     }
 }
 
-void fillarray (){
-	dev[0][16]="dev 0, 16";
-	dev[1][16]="dev 1, 16";
-	dev[2][16]="dev 2, 16";
+/*void fillarray (char *devarray){
+	*devarray[0]="dev 0, 16";
+	*devarray[1]="dev 1, 16";
+	*devarray[2]="dev 2, 16";
 	int i;
 	printf("\n");
 	printf("Printed from fillarry\n");
 	for (i = 0; i<3; i++){
-		printf("dev variable is: %s\n", dev[i][16]);
+		printf("dev variable is: %s\n", *devarray[i]);
 	}
 	printf("\n");
 }
+*/
 
 int getTempSensCnt () {
 	int cnt = 3;
@@ -50,16 +53,21 @@ int getTempSensCnt () {
 int main( void ){
 //    char array[][50];
 //    int SIZE;
-	int x;
-	for (x = 0; x < 3; ++x) {
-		dev[x] = (char *) malloc (sizeof (char *));
+	int WIDTH = 16;
+	int HEIGHT = 3;
+	char **dev = malloc(HEIGHT * sizeof(char*));
+	int i;
+	for (int i = 0; i < HEIGHT; i++){
+		*dev[i] = malloc(WIDTH * sizeof(char));
 	}
-
-
+	
+	dev[0][WIDTH]="dev 0, 16";
+	*dev[1]="dev 1, 16";
+	*dev[2]="dev 2, 16";
 
 	//dev[0][16] = "0";
 //	devPath[0][128] = "0";
-	int i;
+//	int i;
 	
 	//printf("Dev variable before tempSensCnt is: %s\n", dev[0][16]);
 	
@@ -67,11 +75,11 @@ int main( void ){
 	printf ("The count is: %d\n", tempSensCnt);
 
 //    ...call function to fill array... this part works.
-	fillarray();
+	//fillarray(dev);
     //printarray( array, SIZE );
 	printf("Printed from main\n");
 	for (i = 0; i<3; i++){
-		printf("Dev variable is: %s\n", dev[i][16]);
+		printf("Dev variable is: %s\n", *dev[i]);
 	}
 }
 //char *dev[0][16];
