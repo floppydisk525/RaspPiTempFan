@@ -11,10 +11,30 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 char *path = "/sys/bus/w1/devices";    //char pointer to path (that doesn't change)
 //char **dev;
 //char *devPath[][128];
+
+#define devWIDTH 16
+
+char **make_2d_array(size_t width, size_t height) {
+	// First we allocate memory for the outer
+	// 'row holder' array 
+	char **outer_arr = malloc(height * sizeof(char*));
+ 
+	// Then, in each row, we allocate the row
+	// at the desired width
+	for (int i = 0; i < height; i++) {
+		outer_arr[i] = malloc(width * sizeof(char));
+	} 
+ 
+	// MORE STUFF CAN HAPPEN HERE
+ 
+	return outer_arr;
+} 
+
 
 //void printarray( char **array, int SIZE )
 void printarray( char array[][50], int SIZE ){
@@ -29,60 +49,48 @@ void printarray( char array[][50], int SIZE ){
     }
 }
 
-/*void fillarray (char *devarray){
-	*devarray[0]="dev 0, 16";
-	*devarray[1]="dev 1, 16";
-	*devarray[2]="dev 2, 16";
+void fillarray (char **prtarray, int height){
 	int i;
-	printf("\n");
+
+	for( i = 0; i < height; i ++){
+            sprintf(prtarray[i], "POS%d",i);
+        }
+
 	printf("Printed from fillarry\n");
-	for (i = 0; i<3; i++){
-		printf("dev variable is: %s\n", *devarray[i]);
+	for (i = 0; i<height; i++){
+		printf("dev variable is: %s\n", prtarray[i]);
 	}
 	printf("\n");
 }
-*/
+
 
 int getTempSensCnt () {
-	int cnt = 3;
+	int cnt = 5;
 	
 	printf ("The string is: %s\n", path);
 	return cnt;	
 }
 
 int main( void ){
-//    char array[][50];
-//    int SIZE;
-	int WIDTH = 16;
-	int HEIGHT = 3;
-	char **dev = malloc(HEIGHT * sizeof(char*));
 	int i;
-	for (int i = 0; i < HEIGHT; i++){
-		*dev[i] = malloc(WIDTH * sizeof(char));
-	}
-	
-	dev[0][WIDTH]="dev 0, 16";
-	*dev[1]="dev 1, 16";
-	*dev[2]="dev 2, 16";
-
-	//dev[0][16] = "0";
-//	devPath[0][128] = "0";
-//	int i;
-	
-	//printf("Dev variable before tempSensCnt is: %s\n", dev[0][16]);
-	
+	// how many temp sensors are there?  
 	int tempSensCnt = getTempSensCnt();
-	printf ("The count is: %d\n", tempSensCnt);
-
+	printf ("The number of sensors is: %d\n", tempSensCnt);
+	printf("\n");
+	
+	//Make 2d array for sensor numbers
+	char **dev = make_2d_array(devWIDTH, tempSensCnt);
+	
 //    ...call function to fill array... this part works.
-	//fillarray(dev);
+	fillarray(dev, tempSensCnt);
     //printarray( array, SIZE );
 	printf("Printed from main\n");
-	for (i = 0; i<3; i++){
-		printf("Dev variable is: %s\n", *dev[i]);
+	for (i = 0; i<tempSensCnt; i++){
+		printf("Dev variable is: %s\n", dev[i]);
 	}
 }
 //char *dev[0][16];
 //char *devPath[0][128];
-
+//printf("Dev variable before tempSensCnt is: %s\n", dev[0][16]);
+	
 
