@@ -14,8 +14,6 @@
 #include <stdlib.h>
 
 char *path = "/sys/bus/w1/devices";    //char pointer to path (that doesn't change)
-//char **dev;
-//char *devPath[][128];
 
 #define devWIDTH 16
 
@@ -31,8 +29,7 @@ char **make_2d_array(size_t width, size_t height) {
 	} 
  
 	// MORE STUFF CAN HAPPEN HERE
- 
-	return outer_arr;
+ 	return outer_arr;
 } 
 
 
@@ -89,8 +86,4 @@ int main( void ){
 		printf("Dev variable is: %s\n", dev[i]);
 	}
 }
-//char *dev[0][16];
-//char *devPath[0][128];
-//printf("Dev variable before tempSensCnt is: %s\n", dev[0][16]);
-	
 
