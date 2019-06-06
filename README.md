@@ -168,8 +168,7 @@ Run the c program:
 sudo ./tempio  
 
 ### Program Additions for Temperature  
-We need to add a few methods for reading the temperature and are utilizing code from [Brad's c-program](http://bradsrpi.blogspot.com/2013/12/c-program-to-read-temperature-from-1.html), and saved that program for reference in the file Temp1sensor.c in the cprog/Ref folder.  
-
+We need to add a few functions (c terminology for a subroutine or c# method) for reading the temperature and are utilizing code from [Brad's c-program](http://bradsrpi.blogspot.com/2013/12/c-program-to-read-temperature-from-1.html), and saved that program for reference in the file Temp1sensor.c in the cprog/Ref folder.  
 The additions include:  
 Global Variables for Reading Temperature  
 DS18Setup () Method to setup 1-wire devices  
@@ -177,6 +176,18 @@ DS18ReadCheckTime () Method that checks the temperature in a pre-defined interva
 DS18ReadTemp () Read the 1-wire DS18B20 device.  
 
 The main program calls the DS18ReadCheckTime () method and when the desired number of seconds elapse, the method calls DS18ReadTemp() method to actually read the one-wire device.  
+
+#### Does anything go easily in programming?  Strings, pointers, and 2d Array's in c code.  Also, clang (cl) vs. gcc...
+I now see why python is the scripting quick programming choice!  Ever try to work with an array of strings in c code?  Yeah, well, strings and string arrays don't exist like they would in C#.  What you need is a 2d char array.  Sounds easy, but try to send that 2d char array to a function.  Further complicating the fun is that the microsft c compiler clang would not compile a program I got to compile in gcc on the raspberry pi.  Not liking compiler warnings in general and being the perfectionist freak that I am, I wanted my code to compile on both clang and gcc without warnings.  It was a small task, but I needed to learn how to declare a 2d char array and send it to functions.  One thing to point out is that a a char array, which is just a string in C#, can be setup and used with a pointer.  But, if you haven't used pointers before, it can get confusing quickly.  The idea isn't that confusing but the syntax can be tricky to figure out the first time using it.  Two resources helped with this issue:  
+
+A function that creates and returns a 2d array:  
+https://www.quora.com/How-can-I-declare-a-2-dimensional-array-of-char-in-C  
+A working program that compiles in clang or gcc can be found in \cprog\Ref\ArrayTest called arraytest2.c.  Download it, compile, and run it...  
+
+Also, the 1988 c Programming K&R 'bible':  
+https://www.dipmat.univpm.it/~demeio/public/the_c_programming_language_2.pdf  
+I just started reading sections that I needed on pointers, malloc, and other topics and this aided greatly in understanding.  I will admit I'm still weak on pointer syntax, but considering I don't live this everyday, I'm very happy with getting my code to work.  Maybe python for my next program...  
+
 ### RELEASES
 Release v0.01 tests the addition of the read temperature code and the second timer method, but doesn't actually read the temperature.  
 Release v0.02 adds the reading of temperature for qty 1 1-wire device. 
