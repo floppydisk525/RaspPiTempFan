@@ -158,7 +158,7 @@ int DS18Setup (char **devarray, char **devpatharray)
 			if (dirent->d_type == DT_LNK && strstr(dirent->d_name, "28-") != NULL) { 
 				strcpy(devarray[i], dirent->d_name);
 			   // Assemble path to OneWire device
-				sprintf(devPatharray[i], "%s/%s/w1_slave", path, devarray[i]);
+				sprintf(devpatharray[i], "%s/%s/w1_slave", path, devarray[i]);
 				i++;
 			}
 		}
@@ -178,7 +178,7 @@ void DS18ReadTemp(char **devarray, char **devpatharray, int devCnt)
 	
 	while(j != devCnt)
 	{
-		int fd = open(devPath[j], O_RDONLY);
+		int fd = open(devpatharray[j], O_RDONLY);
 		if(fd == -1)
 		{
 			perror ("Couldn't open the w1 device.");
@@ -188,7 +188,7 @@ void DS18ReadTemp(char **devarray, char **devpatharray, int devCnt)
 		{
 			strncpy(tmpData, strstr(buf, "t=") + 2, 5);
 			float tempC = strtof(tmpData, NULL);
-			printf("Device: %s - ", dev[j]);
+			printf("Device: %s - ", devarray[j]);
 			printf("Temp: %.3f C  ", tempC / 1000);
 			printf("%.3f F\n", (tempC / 1000) * 9 / 5 + 32);
 		}
@@ -269,7 +269,7 @@ int DS18ReadCheckTime ()
 	if(DS18SecCnt == DS18ReadTimeInterval)
 	{
 		//DS18ReadTemp ();     //read value of temp HERE
-		TimetoRead = 1
+		TimetoRead = 1;
 		DS18SecCnt = 0;		 //set second counter back to 0.
 				
 		//following lines print to command line to show reading temp
