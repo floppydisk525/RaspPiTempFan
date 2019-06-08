@@ -190,12 +190,14 @@ I just started reading sections that I needed on pointers, malloc, and other top
 
 ### RELEASES
 Release v0.01 tests the addition of the read temperature code and the second timer method, but doesn't actually read the temperature.  
-Release v0.02 adds the reading of temperature for qty 1 1-wire device. 
+Release v0.02 adds the reading of temperature for qty 1 1-wire device.  
+Release v0.3.0 adds multiple 1-wire devices.  Note that button and heartbeat functionality are TOO SLOW.  Need pthread.
 
 ### FUTURE RELEASE STRATEGY  
-Release v0.1 to adds multiple 1-wire devices.  
-Release v0.1.1 to add storing values in sqllite DB.  
-Release v0.2 to add simple/basic fan control based on outside and garage temperature
+Release v0.3.1 to add pthread to improve button and heartbeat functionality. 
+Release v0.3.2 to add offsets to DS18B20 temp readings (ie single point calibration).  
+Release v0.3.3 to add storing values in sqllite DB.  
+Release v0.4.0 to add simple/basic fan control based on outside and garage temperature
 Release v0.x pthread to remove lagginess from push button (This is nice to have for this project).  See [RefLinks.md](https://github.com/floppydisk525/RaspPiTempFan/blob/progcomb/cprog/Ref/RefLinks.md) file for web links to example.  
 Release v0.x DHT11 sensor connectivity.  Currently not implemented.  
 Release v0.x PID control.  
