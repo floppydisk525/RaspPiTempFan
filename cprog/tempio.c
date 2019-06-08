@@ -45,6 +45,9 @@
 #define OUT_GPIO5 RPI_V2_GPIO_P1_29
 #define OUT_GPIO6 RPI_V2_GPIO_P1_31
 
+#define devWIDTH 16
+#define devpathWIDTH 128
+
 //define variables
 int hb_state_1s = 0;    //heartBeat IO
 int CheckTime = 0;      //boolean (int) to allow time check.
@@ -53,11 +56,9 @@ struct timespec gettime_now;
 //define global variables for DS18b20 and file system reading
 DIR *dir;
 struct dirent *dirent;
-//char dev[16];      // Dev ID
-//char devPath[128]; // Path to device
 char buf[256];     // Data from device
 char tmpData[6];   // Temp C * 1000 reported by device 
-//char path[] = "/sys/bus/w1/devices";     //moved to void DS18Setup ()
+char *path = "/sys/bus/w1/devices";     //char pointer to path (that doesn't change)
 ssize_t numRead;
  
 //define timing variables to read ds18b20
@@ -67,11 +68,6 @@ int DS18GetTimeStartFlag = 0;	//Indicates counter is counting and 'have' start t
 int DS18ReadTimeInterval = 2;  //read temp every 2 sec
 int DS18HalfSecFlag = 0;       //half second time ctr flag
 int DS18SecCnt	= 0;            //second counter
-
-//multiple timing variables
-int devCnt = 0;
-extern char dev[][16];
-extern char devPath[][128];
 
 //-----------------------------------------------------
 //------------------ HEARTBEAT TIME -------------------
@@ -125,9 +121,9 @@ void DelayMicrosecondsNoSleep (int delay_us)
 //----------------  DS18b20 TEMP SENSOR READ  ---------------
 //-----------------------------------------------------------
 
-void DS18Setup ()
-{
-	char path[] = "/sys/bus/w1/devices";   
+int getTempSensCnt () {
+	//getTempSensCnt returns the integer number of sensors.  If there are no
+	//  sensors found, it returns 0;
 	int i = 0;
 
 	// 1st pass counts devices
@@ -144,23 +140,25 @@ void DS18Setup ()
 	}
 	else
 	{
-		perror ("Couldn't open the w1 devices directory");
-		//return 1;
+		perror ("Couldn't open the w1 devices directory\n");
+		return 0;
 	}
-	devCnt = i;
-	i = 0;
+	return i;	
+}
 
-	// 2nd pass allocates space for data based on device count
-	//char dev[devCnt][16];
-	//char devPath[devCnt][128];
+int DS18Setup (char **devarray, char **devpatharray)
+{
+	int i = 0;
+	
+	//Allocates space for data based on device count
 	dir = opendir (path);
 	if (dir != NULL){
 		while ((dirent = readdir (dir))) {
 			// 1-wire devices are links beginning with 28-
 			if (dirent->d_type == DT_LNK && strstr(dirent->d_name, "28-") != NULL) { 
-				strcpy(dev[i], dirent->d_name);
+				strcpy(devarray[i], dirent->d_name);
 			   // Assemble path to OneWire device
-				sprintf(devPath[i], "%s/%s/w1_slave", path, dev[i]);
+				sprintf(devpatharray[i], "%s/%s/w1_slave", path, devarray[i]);
 				i++;
 			}
 		}
@@ -168,21 +166,19 @@ void DS18Setup ()
 	}
 	else
 	{
-		perror ("Couldn't open the w1 devices directory");
-		//return 1;
-	}
-	i = 0;
+		perror ("Couldn't open the w1 devices directory in DS18Setup!\n");
+		return 0;
+	}	
+	return 1;
 }
 
-void DS18ReadTemp()
+void DS18ReadTemp(char **devarray, char **devpatharray, int devCnt)
 {
-	//char dev[devCnt][16];
-	//char devPath[devCnt][128];
 	int j = 0;		//counter for reading sensors
 	
 	while(j != devCnt)
 	{
-		int fd = open(devPath[j], O_RDONLY);
+		int fd = open(devpatharray[j], O_RDONLY);
 		if(fd == -1)
 		{
 			perror ("Couldn't open the w1 device.");
@@ -192,18 +188,17 @@ void DS18ReadTemp()
 		{
 			strncpy(tmpData, strstr(buf, "t=") + 2, 5);
 			float tempC = strtof(tmpData, NULL);
-			printf("Device: %s - ", dev[j]);
+			printf("Device: %s - ", devarray[j]);
 			printf("Temp: %.3f C  ", tempC / 1000);
 			printf("%.3f F\n", (tempC / 1000) * 9 / 5 + 32);
 		}
 		close(fd);
 		j++;
 	}
-	j = 0;
 	printf("%s\n", ""); // Blank line after each cycle
 }
 
-void DS18ReadCheckTime ()
+int DS18ReadCheckTime ()
 {
 	/*This subroutine works by setting DS18TimerStartVal equal to gettime_now.tv_nsec as the base for counting. It then sets a flag DS18GetTimeStartFlag to say that we ahve the base value.  As well as adds a half second to the base value to look at a range of 1/2 second later.  The half second could be made a lot smaller, but keep it large because we don't want to miss a second count (there's probably WAY easier ways to do this.)
 	
@@ -221,12 +216,12 @@ void DS18ReadCheckTime ()
 
 	//printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 	//--------------------------------------------------------------
-	
+	int TimetoRead = 0;	//set return value, 0 indicates do not read temp.
 	clock_gettime(CLOCK_REALTIME, &gettime_now);   //get current time of counter
 	
 	if(DS18GetTimeStartFlag == 0)		//set variables with starttime(s), set flag have time
 	{
-		DS18GetTimeStartFlag =1;
+		DS18GetTimeStartFlag = 1;
 		DS18TimerStartVal = gettime_now.tv_nsec;
 		DS18TimerStartValPlusHalfSec = DS18TimerStartVal + 500000000;
 		if(DS18TimerStartValPlusHalfSec > 1000000000)
@@ -273,17 +268,36 @@ void DS18ReadCheckTime ()
 	
 	if(DS18SecCnt == DS18ReadTimeInterval)
 	{
-		DS18ReadTemp ();     //read value of temp HERE
+		//DS18ReadTemp ();     //read value of temp HERE
+		TimetoRead = 1;
 		DS18SecCnt = 0;		 //set second counter back to 0.
 				
 		//following lines print to command line to show reading temp
 		//DELETE when ready.
-				time_t t = time(NULL);
+		time_t t = time(NULL);
 		struct tm tm = *localtime(&t);		
 		printf("READ TEMPERATURE (time): %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
 		//----------------  delete to here -----------------
 	}
+	return TimetoRead;
 }
+
+//make a char 2d char array
+
+char **make_2d_array(size_t width, size_t height) {
+	// First we allocate memory for the outer
+	// 'row holder' array 
+	char **outer_arr = malloc(height * sizeof(char*));
+ 
+	// Then, in each row, we allocate the row at the desired width
+	for (int i = 0; i < height; i++) {
+		outer_arr[i] = malloc(width * sizeof(char));
+	} 
+ 
+	// MORE STUFF CAN HAPPEN HERE
+ 	return outer_arr;
+} 
+
 
 //-----------------------------------------------------------
 //------------------------  MAIN  ---------------------------
@@ -304,10 +318,30 @@ int main(int argc, char **argv)
     bcm2835_gpio_fsel(OUT_GPIO5, BCM2835_GPIO_FSEL_OUTP);
     bcm2835_gpio_fsel(OUT_GPIO6, BCM2835_GPIO_FSEL_OUTP);
 
-	char dev[2][16];
-	char devPath[2][128];
-	DS18Setup ();	//setup DS18 info
+	//setup solid digital output LED to indicate in setup mode.  
 
+	int tempSensCnt = getTempSensCnt();
+	if (tempSensCnt == 0){
+		printf("Temperature Sensor Count is ZERO.  Program Terminated!\n");
+		//flash LED indicator light 'fast' a few times.
+		return 1;
+	}
+	
+	//setup (ie declare) 2d char arrays (pointers) dev and devPath
+	char **dev = make_2d_array(devWIDTH, tempSensCnt);
+	char **devpath = make_2d_array(devpathWIDTH, tempSensCnt);
+	
+	int tempSetupOK = DS18Setup (dev, devpath);  //setup DS18 info, fill arrays/pointers
+	if (tempSetupOK == 0){
+		printf("Unable to find sensors.  Program Terminated!\n");
+		//flash LED indicator light 'fast' a few times.
+		return 1;
+	}
+	
+	//read initial values of sensors
+	DS18ReadTemp (dev, devpath, tempSensCnt);
+	
+	int TimetoReadTemp = 0;
     //-----------------------------------------------------------
     //-------------------  infinite while loop ------------------
     //-----------------------------------------------------------
@@ -320,11 +354,13 @@ int main(int argc, char **argv)
 
         HeartBeat();       //call heartbeat function
 
-		DS18ReadCheckTime (); //call read temperature
-
+		TimetoReadTemp = DS18ReadCheckTime (); //call read temperature
+		if (TimetoReadTemp == 1)
+			DS18ReadTemp (dev, devpath, tempSensCnt);
+		
         // wait a bit (which is better below?)
         delay(10);      //time in ms
-//        DelayMicrosecondsNoSleep(10);     //time in msecs
+		//DelayMicrosecondsNoSleep(10);     //time in msecs
     }
 
    //-----------------------------------------------------------
@@ -333,3 +369,6 @@ int main(int argc, char **argv)
     bcm2835_close();
     return 0;
 }
+//note to self - can we move HeartBeat() and DS18ReadCheckTime(); to their
+// own threads that repeat indefinitely until the program is terminated?  That'd 
+// be the way to do it...
