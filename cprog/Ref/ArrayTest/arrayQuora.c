@@ -12,7 +12,7 @@
 
 #include <stdlib.h> // Needed for malloc and free
 #include <stdio.h>
-#include <string.h>
+//#include <string.h>
 
 #define WIDTH 5
 #define HEIGHT 10 
