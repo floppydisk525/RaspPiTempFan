@@ -3,6 +3,9 @@
 
 /*compile 
 gcc -Wall thrvar.c -o thrvar -l pthread
+
+test code from 
+https://www.geeksforgeeks.org/multithreading-c-2/
 */
 
 #include <stdio.h> 
