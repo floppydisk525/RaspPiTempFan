@@ -1,6 +1,10 @@
-//compile 
+/*
+compile 
+gcc -Wall testa.c -o testa -l pthread
 
-//https://www.thegeekstuff.com/2012/04/create-threads-in-linux/
+Link
+https://www.thegeekstuff.com/2012/04/create-threads-in-linux/
+*/
 
 #include<stdio.h>
 #include<string.h>
