@@ -1,6 +1,7 @@
 /*
 compile
-gcc -Wall thrvar.c -o thrvar -l thread
+gcc -Wall thrarray.c -o thrarray -l thread
+Did not compile!  change to pthread?  After all that? 
 
 link to program
 https://users.cs.cf.ac.uk/Dave.Marshall/C/node32.html
