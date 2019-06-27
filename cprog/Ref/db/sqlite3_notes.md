@@ -3,6 +3,10 @@
 ### Sqlite3 Links
 http://www.sqlitetutorial.net/sqlite-create-table/  
 https://www.sqlite.org/faq.html  
+
+## Linux Install Commands  
+sudo apt-get install sqlite3 libsqlite3-dev  
+sudo apt-get install sqlitebrowser  
   
 ## Database Schema
 Database schema  
