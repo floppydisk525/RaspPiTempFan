@@ -44,3 +44,10 @@ The BEGIN TRANSACTION starts a new transaction. It ensures that all the subseque
 
 The COMMIT statement commits all the statements.  
 
+### .open or connect to specific database, check current connection with .databases  
+sqlite3 name.db  
+  
+If name.db does not exist, it will be created.  
+You can also open/connect to a database after starting sqlite3 with ".open name.db"  
+
+sqlite> .databases   (shows currently connected databases)  
