@@ -18,7 +18,7 @@ TABLE tmp_snsr
 PK - int (needed?  Use 28-Num) 
 28-num - int (or str)
 location_Desc  - char array  
-offset - floating (?)  
+snsr_offset - floating (?)  
   
 TABLE tmp_rec  
 PK - int  
@@ -30,6 +30,7 @@ offset - floating (record used incase changes)
 TABLE fan_info  
 fan_id - int  (PK)
 fan_desc - String/char array  
+fan_offset - floating (?)  
   
 TABLE fan_rec  
 fan_id - int  (FK)
