@@ -14,28 +14,27 @@ sudo apt-get install sqlitebrowser
 ## Database Schema
 Database schema  
 
-TABLE Tmp_Snsr
+TABLE tmp_snsr
 PK - int (needed?  Use 28-Num) 
-28-Num - int (or str)
-Location_Desc  - char array  
-Offset - floating (?)  
+28-num - int (or str)
+location_Desc  - char array  
+offset - floating (?)  
   
-TABLE Tmp_rec  
+TABLE tmp_rec  
 PK - int  
-28-Num - int (or str)  
-Date_Time - date and time type  
-Temp_c - floating  
-Offset - floating (record used incase changes)  
+28-num - int (or str)  
+date_time - date and time type  
+temp_c - floating  
+offset - floating (record used incase changes)  
   
-TABLE Fan_Info  
-Fan_ID - int  
-Fan_Desc - String/char array  
+TABLE fan_info  
+fan_id - int  (PK)
+fan_desc - String/char array  
   
-TABLE Fan_rec  
-pk - int  
-Fan_ID - int  
-Date_Time - Date and time type  
-Fan_output - floating  
+TABLE fan_rec  
+fan_id - int  (FK)
+date_time - Date and time type  
+fan_output - floating  
 
 ## SQLITE3 Commands & Examples
 
