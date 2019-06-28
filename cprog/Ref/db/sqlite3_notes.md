@@ -4,6 +4,9 @@
 http://www.sqlitetutorial.net/sqlite-create-table/  
 https://www.sqlite.org/faq.html  
 
+Relational DB Overview Link  
+https://www.ntu.edu.sg/home/ehchua/programming/sql/relational_database_design.html  
+
 ## Linux Install Commands  
 sudo apt-get install sqlite3 libsqlite3-dev  
 sudo apt-get install sqlitebrowser  
@@ -33,3 +36,11 @@ pk - int
 Fan_ID - int  
 Date_Time - Date and time type  
 Fan_output - floating  
+
+## SQLITE3 Commands & Examples
+
+### BEGIN TRANSACTION & COMMIT
+The BEGIN TRANSACTION starts a new transaction. It ensures that all the subsequent statements execute successfully or nothing executes at all.  
+
+The COMMIT statement commits all the statements.  
+
