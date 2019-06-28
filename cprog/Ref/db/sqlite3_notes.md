@@ -51,3 +51,10 @@ If name.db does not exist, it will be created.
 You can also open/connect to a database after starting sqlite3 with ".open name.db"  
 
 sqlite> .databases   (shows currently connected databases)  
+
+### Show .tables in a database and show structure  
+sqlite> .tables  
+Lists the tables in a database.  
+
+sqlite> .schema <table name>
+Lists the structure of a table.  Good to check a table after entering it.  
