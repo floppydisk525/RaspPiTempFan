@@ -17,7 +17,7 @@ Database schema
 TABLE tmp_snsr
 28-num - text  (PK)
 location_desc  - char array  
-snsr_offset - floating (?)  
+snsr_tmp_offset - floating (?)  
   
 TABLE tmp_rec  
 rowid - int (PK)  
@@ -26,6 +26,7 @@ date_time - date and time type
 temp_c - floating  
 tmp_offset - floating (record used incase changes)  
 fan_output - floating  
+button_press - boolean (int)
   
 TABLE fan_info  
 fan_id - int  (PK)
@@ -33,9 +34,15 @@ fan_desc - String/char array
 fan_offset - floating (?)  
   
 
-(REMOVE)  TABLE fan_rec  
+(REMOVE & include in TABLE tmp_rec)  TABLE fan_rec  
 fan_id - int  (FK)
 date_time - Date and time type  
+
+Questions  
+Do I need separate fields for date & time or only one field?  
+Do I store floating (ie double) or text and convert in C?  What about boolean vs int?  
+Do I need a foreign key for fan_id in the tmp_rec TABLE?   Going with it, not sure it's needed.  
+How to write Foreign Key into tmp_rec TABLE for tmp_sensor 28-num and fan_info fan_id?  My guess is to pull the keys from the tables and then write them when writing a row of data?  
 
 
 ## SQLITE3 Commands & Examples
