@@ -15,27 +15,28 @@ sudo apt-get install sqlitebrowser
 Database schema  
 
 TABLE tmp_snsr
-PK - int (needed?  Use 28-Num) 
-28-num - int (or str)
-location_Desc  - char array  
+28-num - text  (PK)
+location_desc  - char array  
 snsr_offset - floating (?)  
   
 TABLE tmp_rec  
-PK - int  
-28-num - int (or str)  
+rowid - int (PK)  
+28-num - text - (FK)  
 date_time - date and time type  
 temp_c - floating  
-offset - floating (record used incase changes)  
+tmp_offset - floating (record used incase changes)  
+fan_output - floating  
   
 TABLE fan_info  
 fan_id - int  (PK)
 fan_desc - String/char array  
 fan_offset - floating (?)  
   
-TABLE fan_rec  
+
+(REMOVE)  TABLE fan_rec  
 fan_id - int  (FK)
 date_time - Date and time type  
-fan_output - floating  
+
 
 ## SQLITE3 Commands & Examples
 
@@ -58,3 +59,6 @@ Lists the tables in a database.
 
 sqlite> .schema <table name>
 Lists the structure of a table.  Good to check a table after entering it.  
+
+### How to OUTPUT the database to CSV or Excel  
+tbd  
