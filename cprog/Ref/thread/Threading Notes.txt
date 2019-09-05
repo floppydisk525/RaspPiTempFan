@@ -1,0 +1,14 @@
+Threading notes from closed tabs on 20190905.
+
+google search:
+pthread c example
+
+https://timmurphy.org/2010/05/04/pthreads-in-c-a-minimal-working-example/
+https://dev.to/quantumsheep/basics-of-multithreading-in-c-4pam
+https://users.cs.cf.ac.uk/Dave.Marshall/C/node32.html
+
+google search:
+<thread.h> c example -pthread
+
+https://riptutorial.com/c/example/31557/c11-threads-simple-example
+https://stackoverflow.com/questions/13131982/create-thread-passing-arguments

@@ -1,8 +1,17 @@
 # Sqlite3 Notes
 
 ### Sqlite3 Links
+Links closed 20190830 regarding SQLITE3
 http://www.sqlitetutorial.net/sqlite-create-table/  
 https://www.sqlite.org/faq.html  
+https://www.sqlitetutorial.net/sqlite-foreign-key/
+https://www.sqlitetutorial.net/sqlite-sample-database/
+https://www.sqlitetutorial.net/sqlite-commands/
+https://www.ntu.edu.sg/home/ehchua/programming/sql/relational_database_design.html
+google searches:
+sqlite3 create multiple tables
+sqlite write overwrite when memory limit exists
+
 
 Relational DB Overview Link  
 https://www.ntu.edu.sg/home/ehchua/programming/sql/relational_database_design.html  
