@@ -47,7 +47,6 @@ https://www.makeuseof.com/tag/how-to-build-home-automation-system-raspberry-pi-a
 LEMP  
 https://thepi.io/how-to-set-up-a-web-server-on-the-raspberry-pi/  
 
-
 Nice tutorial  
 https://www.toptal.com/raspberry-pi/how-to-turn-your-raspberry-pi-into-a-development-server 
 
