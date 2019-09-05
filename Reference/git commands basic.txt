@@ -1,0 +1,9 @@
+This file is simply the most basic git commmands so after 5 months of not
+using them I have a quick reference.
+
+
+git branch
+
+git add -A
+git commit -m 'update database schema'
+git push origin progcomb
